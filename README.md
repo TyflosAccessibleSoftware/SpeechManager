@@ -1,3 +1,5 @@
 # SpeechManager
 
-A description of this package.
+A package to manage TextToSpeech services.
+
+This package is compatible with iOS, MacOS, TvOS and WatchOS.
