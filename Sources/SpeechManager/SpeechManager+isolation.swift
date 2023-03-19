@@ -1,6 +1,5 @@
 import Foundation
 
-
 extension SpeechManager {
     public func startVoiceTimerService() {
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
