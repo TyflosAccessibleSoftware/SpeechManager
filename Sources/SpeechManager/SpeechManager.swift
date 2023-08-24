@@ -23,6 +23,8 @@
 import AVFoundation
 #if os(macOS)
 import AppKit
+#elseif os(watchOS)
+import UIKit
 #else
 import UIKit
 #endif

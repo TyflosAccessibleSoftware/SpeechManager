@@ -24,7 +24,7 @@ import AVFoundation
 #if os(macOS)
 import AppKit
 #elseif os(watchOS)
-import Accessibility
+
 #else
 import UIKit
 #endif
