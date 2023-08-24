@@ -23,6 +23,8 @@
 import AVFoundation
 #if os(macOS)
 import AppKit
+#elseif os(watchOS)
+import Accessibility
 #else
 import UIKit
 #endif
@@ -46,6 +48,13 @@ extension SpeechManager {
                 .priority: NSAccessibilityPriorityLevel.high.rawValue
             ]
         )
+    }
+    
+#elseif os(watchOS)
+    
+    internal func screenReaderSpeak(_ text: String) {
+        let utterance = AVSpeechUtterance(string: text)
+        synthesizer.speak(utterance)
     }
     
 #else
