@@ -39,6 +39,7 @@ This sample code makes the Accessibility API speaks the message *Hello world!* u
 ```
 import SpeechManager
 
+let speech = SpeechManager.shared
 speech.speakWithScreenReader("Hello World!")
 ```
 

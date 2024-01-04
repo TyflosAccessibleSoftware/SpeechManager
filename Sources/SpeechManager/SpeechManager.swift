@@ -29,7 +29,6 @@ import UIKit
 import UIKit
 #endif
 
-public let speech = SpeechManager.shared
 public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     public static let shared = SpeechManager()
     public var delegate : SpeechManagerDelegate? = nil
