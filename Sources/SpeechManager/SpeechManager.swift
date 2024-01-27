@@ -43,6 +43,26 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     }
     }
     
+    public var availableVoices: [String] {
+        get {
+            let voices = AVSpeechSynthesisVoice.speechVoices()
+            var listOfVoices: [String] = []
+            for voice in voices {
+                listOfVoices.append(voice.name)
+            }
+            return listOfVoices
+        }
+    }
+    
+    public func getVoiceBy(_ name: String)-> AVSpeechSynthesisVoice? {
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+        for voice in voices {
+            if voice.name.lowercased() == name.lowercased() {
+                return voice
+            }
+        }
+        return nil
+    }
     
     // Use VoiceOver speech engine
     public var accessibilityVoiceEnabled : Bool = false
@@ -63,7 +83,13 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         self.muteStatus = value
     }
     
-    public func speak(_ text : String, volume : Float = 1.0, rate : Float = 0.5, pitch : Float = 1.0, language : SpeechLanguage = .unknown, alone: Bool = false) {
+    public func speak(_ text : String, 
+                      volume : Float = 1.0, 
+                      rate : Float = 0.5,
+                      pitch : Float = 1.0, language :
+                      SpeechLanguage = .unknown,
+                      voiceName: String? = nil,
+                      alone: Bool = false) {
         let utterance = AVSpeechUtterance(string: text)
         if alone {
             muteScreenReaderVoice = true
@@ -79,7 +105,11 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         }
         utterance.rate = rate
         utterance.pitchMultiplier = pitch
-        if language != .unknown {
+        if let nameForVoice = voiceName {
+            if let voice = getVoiceBy(nameForVoice) {
+                utterance.voice = voice
+            }
+        } else if language != .unknown {
             utterance.voice = AVSpeechSynthesisVoice(language: "\(language.rawValue)")
         }
         if synthesizer.isSpeaking{
