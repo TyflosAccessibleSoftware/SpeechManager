@@ -48,20 +48,31 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
             let voices = AVSpeechSynthesisVoice.speechVoices()
             var listOfVoices: [String] = []
             for voice in voices {
-                listOfVoices.append(voice.name)
+                listOfVoices.append(voice.longName)
             }
             return listOfVoices
         }
     }
     
-    public func getVoiceBy(_ name: String)-> AVSpeechSynthesisVoice? {
+    public func getVoiceBy(_ longName: String)-> AVSpeechSynthesisVoice? {
         let voices = AVSpeechSynthesisVoice.speechVoices()
         for voice in voices {
-            if voice.name.lowercased() == name.lowercased() {
+            if voice.longName.lowercased() == longName.lowercased() {
                 return voice
             }
         }
         return nil
+    }
+    
+    public func getVoicesBy(_ name: String)-> [AVSpeechSynthesisVoice] {
+        var result: [AVSpeechSynthesisVoice] = []
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+        for voice in voices {
+            if voice.name.lowercased() == name.lowercased() {
+                result.append(voice)
+            }
+        }
+        return result
     }
     
     // Use VoiceOver speech engine
