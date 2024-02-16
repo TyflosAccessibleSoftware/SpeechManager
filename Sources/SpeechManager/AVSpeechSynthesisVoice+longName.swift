@@ -1,7 +1,7 @@
 import AVFoundation
 
 extension AVSpeechSynthesisVoice {
-    var longName: String {
+    public var longName: String {
         get {
             "\(self.name) \(( self.identifier.localizedCaseInsensitiveContains("compact") ? "compact " : ""))(\(self.language))"
         }
