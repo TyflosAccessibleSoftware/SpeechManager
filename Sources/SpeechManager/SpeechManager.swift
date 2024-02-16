@@ -43,6 +43,22 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     }
     }
     
+    public var isPaused: Bool { get {
+        synthesizer.isPaused
+    }
+    }
+    
+    public var availableLanguages: [String] {
+        get {
+            let voices = AVSpeechSynthesisVoice.speechVoices()
+            var listOfLanguages: Set<String> = []
+            for voice in voices {
+                listOfLanguages.insert(voice.language)
+            }
+            return Array(listOfLanguages)
+        }
+    }
+    
     public var availableVoices: [String] {
         get {
             let voices = AVSpeechSynthesisVoice.speechVoices()
@@ -51,6 +67,22 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
                 listOfVoices.append(voice.longName)
             }
             return listOfVoices
+        }
+    }
+    
+    public var availableVoicesByLanguage: [String:[AVSpeechSynthesisVoice]] {
+        get {
+            var voicesByLanguage: [String:[AVSpeechSynthesisVoice]] = [String:[AVSpeechSynthesisVoice]]()
+            let voices = AVSpeechSynthesisVoice.speechVoices()
+            for voice in voices {
+                if var voicesForLanguage = voicesByLanguage[voice.language] {
+                    voicesForLanguage.append(voice)
+                    voicesByLanguage[voice.language] = voicesForLanguage
+                } else {
+                    voicesByLanguage[voice.language] = [voice]
+                }
+            }
+            return voicesByLanguage
         }
     }
     
@@ -69,6 +101,17 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         let voices = AVSpeechSynthesisVoice.speechVoices()
         for voice in voices {
             if voice.name.lowercased() == name.lowercased() {
+                result.append(voice)
+            }
+        }
+        return result
+    }
+    
+    public func getVoicesFor(language: String)-> [AVSpeechSynthesisVoice] {
+        var result: [AVSpeechSynthesisVoice] = []
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+        for voice in voices {
+            if voice.language.lowercased() == language.lowercased() {
                 result.append(voice)
             }
         }
@@ -94,8 +137,8 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         self.muteStatus = value
     }
     
-    public func speak(_ text : String, 
-                      volume : Float = 1.0, 
+    public func speak(_ text : String,
+                      volume : Float = 1.0,
                       rate : Float = 0.5,
                       pitch : Float = 1.0, language :
                       SpeechLanguage = .unknown,
@@ -142,5 +185,13 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         } else {
             synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
         }
+    }
+    
+    public func resume() {
+        synthesizer.continueSpeaking()
+    }
+    
+    public func pause() {
+        synthesizer.pauseSpeaking(at: .word)
     }
 }
