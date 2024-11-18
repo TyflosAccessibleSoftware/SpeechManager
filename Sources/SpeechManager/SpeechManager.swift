@@ -143,7 +143,8 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
                       pitch : Float = 1.0, language :
                       SpeechLanguage = .unknown,
                       voiceName: String? = nil,
-                      alone: Bool = false) {
+                      alone: Bool = false,
+                      withAccessibilitySettings: Bool = false) {
         let utterance = AVSpeechUtterance(string: text)
         if alone {
             muteScreenReaderVoice = true
@@ -157,8 +158,13 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         } else {
             utterance.volume = volume
         }
-        utterance.rate = rate
-        utterance.pitchMultiplier = pitch
+        if withAccessibilitySettings {
+            utterance.prefersAssistiveTechnologySettings = true
+        } else {
+            utterance.prefersAssistiveTechnologySettings = false
+            utterance.rate = rate
+            utterance.pitchMultiplier = pitch
+        }
         if let nameForVoice = voiceName {
             if let voice = getVoiceBy(nameForVoice) {
                 utterance.voice = voice
