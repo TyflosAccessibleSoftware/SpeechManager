@@ -158,6 +158,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         } else {
             utterance.volume = volume
         }
+#if !os(watchOS)
         if withAccessibilitySettings {
             utterance.prefersAssistiveTechnologySettings = true
         } else {
@@ -165,6 +166,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
             utterance.rate = rate
             utterance.pitchMultiplier = pitch
         }
+#endif
         if let nameForVoice = voiceName {
             if let voice = getVoiceBy(nameForVoice) {
                 utterance.voice = voice
