@@ -118,6 +118,12 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         return result
     }
     
+    public func findVoice(matching query: String) -> AVSpeechSynthesisVoice? {
+        return AVSpeechSynthesisVoice.speechVoices().first {
+            $0.name.localizedCaseInsensitiveContains(query) || $0.longName.localizedCaseInsensitiveContains(query)
+        }
+    }
+    
     public var defaultVoiceLanguage: String {
         let utterance = AVSpeechUtterance(string: "Sample text")
         return utterance.voice?.language ?? ""
@@ -131,6 +137,27 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     public var defaultVoiceLongName: String {
         let utterance = AVSpeechUtterance(string: "Sample text")
         return utterance.voice?.longName ?? ""
+    }
+    
+    public var defaultVoiceVolume: Float {
+        let utterance = AVSpeechUtterance(string: "Sample text")
+        return utterance.volume
+    }
+    
+    public var defaultVoiceRate: Float {
+        let utterance = AVSpeechUtterance(string: "Sample text")
+        return utterance.rate
+    }
+    
+    public var defaultVoicepitchMultiplier: Float {
+        let utterance = AVSpeechUtterance(string: "Sample text")
+        return utterance.pitchMultiplier
+    }
+    
+    // Tool to clean the text
+    
+    public func cleanTextForSpeech(_ text: String) -> String {
+        return text.unicodeScalars.filter { $0.isASCII }.map(String.init).joined()
     }
     
     // Use VoiceOver speech engine
