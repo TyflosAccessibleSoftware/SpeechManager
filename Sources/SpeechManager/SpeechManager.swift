@@ -118,6 +118,21 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         return result
     }
     
+    public var defaultVoiceLanguage: String {
+        let utterance = AVSpeechUtterance(string: "Sample text")
+        return utterance.voice?.language ?? ""
+    }
+    
+    public var defaultVoiceName: String {
+        let utterance = AVSpeechUtterance(string: "Sample text")
+        return utterance.voice?.name ?? ""
+    }
+    
+    public var defaultVoiceLongName: String {
+        let utterance = AVSpeechUtterance(string: "Sample text")
+        return utterance.voice?.longName ?? ""
+    }
+    
     // Use VoiceOver speech engine
     public var accessibilityVoiceEnabled : Bool = false
     // Stop VoiceOver speech engine when speak function starts
