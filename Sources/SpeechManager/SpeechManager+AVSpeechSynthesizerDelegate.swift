@@ -57,8 +57,8 @@ extension SpeechManager {
     ) {
         let fullText = utterance.speechString
         if let swiftRange = Range(characterRange, in: fullText) {
-            var spokenPrefix = String(fullText[..<swiftRange.lowerBound])
-            var remainingSuffix = String(fullText[swiftRange.lowerBound...])
+            let spokenPrefix = String(fullText[..<swiftRange.lowerBound])
+            let remainingSuffix = String(fullText[swiftRange.lowerBound...])
             onSpokenText?(spokenPrefix,remainingSuffix)
         }
     }
