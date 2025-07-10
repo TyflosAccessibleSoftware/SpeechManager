@@ -22,7 +22,7 @@
 
 import Foundation
 
-public enum SpeechLanguage : String {
+public enum SpeechLanguage: String {
     case unknown = ""
     case Arabic = "ar-SA"
     case Chinese = "zh-CN"
@@ -61,4 +61,5 @@ public enum SpeechLanguage : String {
     case Swedish = "sv-SE"
     case Thai = "th-TH"
     case Turkish = "tr-TR"
+    case Custom = "custom"
 }
