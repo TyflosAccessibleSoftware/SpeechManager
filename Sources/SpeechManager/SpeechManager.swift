@@ -31,8 +31,10 @@ import UIKit
 
 public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     public static let shared = SpeechManager()
-    public var delegate : SpeechManagerDelegate? = nil
+    public weak var delegate: SpeechManagerDelegate?
     public var muteStatus : Bool = false
+    
+    public var onSpokenText: ((String,String)->Void)?
     internal var voiceTimerService: Bool = true
     internal let synthesizer = AVSpeechSynthesizer()
     internal var muteScreenReaderVoice: Bool = false
@@ -167,7 +169,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     
     private override init() {
         super.init()
-        self.synthesizer.delegate = self
+        synthesizer.delegate = self
         startVoiceTimerService()
     }
     
@@ -179,14 +181,18 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         self.muteStatus = value
     }
     
-    public func speak(_ text : String,
+    public func speak(
+        _ text : String,
                       volume : Float = 1.0,
                       rate : Float = 0.5,
                       pitch : Float = 1.0, language :
                       SpeechLanguage = .unknown,
                       voiceName: String? = nil,
                       alone: Bool = false,
-                      withAccessibilitySettings: Bool = false) {
+                      withAccessibilitySettings: Bool = false,
+        preDelay: Double = 0.0,
+        postDelay: Double = 0.0
+    ) {
         let utterance = AVSpeechUtterance(string: text)
         if alone {
             muteScreenReaderVoice = true
@@ -200,6 +206,8 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         } else {
             utterance.volume = volume
         }
+        utterance.preUtteranceDelay = preDelay
+        utterance.postUtteranceDelay = postDelay
 #if !os(watchOS)
         if withAccessibilitySettings {
             utterance.prefersAssistiveTechnologySettings = true

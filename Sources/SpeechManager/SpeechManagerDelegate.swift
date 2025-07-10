@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol SpeechManagerDelegate {
+public protocol SpeechManagerDelegate: AnyObject {
     func speechManagerDidStart()
     func speechManagerDidFinish()
     func speechManagerDidPause()

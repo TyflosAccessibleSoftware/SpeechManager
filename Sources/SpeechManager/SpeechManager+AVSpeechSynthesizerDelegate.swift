@@ -21,6 +21,7 @@
 //  THE SOFTWARE.
 
 import AVFoundation
+import Foundation
 #if os(macOS)
 import AppKit
 #else
@@ -29,32 +30,36 @@ import UIKit
 
 extension SpeechManager {
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        if delegate != nil {
-            delegate!.speechManagerDidFinish()
-        }
+        onSpokenText?(utterance.speechString,"")
+        delegate?.speechManagerDidFinish()
     }
     
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        if delegate != nil {
-            delegate!.speechManagerDidStart()
-        }
+        delegate?.speechManagerDidStart()
     }
     
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        if delegate != nil {
-            delegate!.speechManagerDidCancel()
-        }
+        delegate?.speechManagerDidCancel()
     }
     
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
-        if delegate != nil {
-            delegate!.speechManagerDidPause()
-        }
+        delegate?.speechManagerDidPause()
     }
     
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
-        if delegate != nil {
-            delegate!.speechManagerDidContinue()
+        delegate?.speechManagerDidContinue()
+    }
+    
+    public func speechSynthesizer(
+        _ synthesizer: AVSpeechSynthesizer,
+        willSpeakRangeOfSpeechString characterRange: NSRange,
+        utterance: AVSpeechUtterance
+    ) {
+        let fullText = utterance.speechString
+        if let swiftRange = Range(characterRange, in: fullText) {
+            var spokenPrefix = String(fullText[..<swiftRange.lowerBound])
+            var remainingSuffix = String(fullText[swiftRange.lowerBound...])
+            onSpokenText?(spokenPrefix,remainingSuffix)
         }
     }
 }
