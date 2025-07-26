@@ -6,6 +6,7 @@ public protocol SpeechManagerDelegate: AnyObject {
     func speechManagerDidPause()
     func speechManagerDidContinue()
     func speechManagerDidCancel()
+    func speechManager(didRequestUnavailableVoice voice: String)
 }
 
 public extension SpeechManagerDelegate {
@@ -14,4 +15,5 @@ public extension SpeechManagerDelegate {
     func speechManagerDidPause() {}
     func speechManagerDidContinue() {}
     func speechManagerDidCancel() {}
+    func speechManager(didRequestUnavailableVoice voice: String) {}
 }

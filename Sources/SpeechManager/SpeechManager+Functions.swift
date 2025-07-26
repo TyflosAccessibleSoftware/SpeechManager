@@ -61,12 +61,18 @@ extension SpeechManager {
             utterance.pitchMultiplier = pitch
         }
 #endif
-        if let nameForVoice = voiceName {
-            if let voice = getVoiceBy(nameForVoice) {
-                utterance.voice = voice
-            }
+        var requestedVoice: AVSpeechSynthesisVoice?
+        if let nameForVoice = voiceName, let voice = getVoiceBy(nameForVoice) {
+            requestedVoice = voice
         } else if language != .unknown {
-            utterance.voice = AVSpeechSynthesisVoice(language: "\(language.rawValue)")
+            requestedVoice = AVSpeechSynthesisVoice(language: "\(language.rawValue)")
+        }
+        if let voiceToUse = requestedVoice {
+            if voiceToUse.downloadStatus == .needsDownload {
+                delegate?.speechManager(didRequestUnavailableVoice: voiceToUse.longName)
+            } else {
+                utterance.voice = voiceToUse
+            }
         }
         if synthesizer.isSpeaking{
             synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
