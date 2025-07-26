@@ -14,6 +14,7 @@ extension SpeechManager {
     }
     
     public func speak(_ text: String, settings: SpeechConfiguration) {
+        
         self.speak(text,
                    volume: settings.volume,
                    rate: settings.rate,
@@ -54,10 +55,8 @@ extension SpeechManager {
         utterance.preUtteranceDelay = preDelay
         utterance.postUtteranceDelay = postDelay
 #if !os(watchOS)
-        if withAccessibilitySettings {
-            utterance.prefersAssistiveTechnologySettings = true
-        } else {
-            utterance.prefersAssistiveTechnologySettings = false
+        utterance.prefersAssistiveTechnologySettings = withAccessibilitySettings
+        if !withAccessibilitySettings {
             utterance.rate = rate
             utterance.pitchMultiplier = pitch
         }
@@ -75,11 +74,36 @@ extension SpeechManager {
         if stopAccessibilityVoiceOnSpeakEvent {
             stopWithScreenReader()
         }
-        if accessibilityVoiceEnabled == true {
+        if accessibilityVoiceEnabled {
             speakWithScreenReader(text)
         } else {
             synthesizer.speak(utterance)
         }
+        saveSpeechConfiguration(
+            volume: volume,
+            rate: rate,
+            pitch: pitch,
+            language: language,
+            voiceName: voiceName,
+            alone: alone,
+            withAccessibilitySettings: withAccessibilitySettings,
+            preDelay: preDelay,
+            postDelay: postDelay
+        )
+    }
+    
+    public func speakEnqueued(_ text: String, configuration: SpeechConfiguration? = nil) {
+        let newElement = SpeechQueueElement(text: text, configuration: configuration)
+        queuedText.append(newElement)
+        if !isSpeaking {
+            manageQueue()
+        }
+    }
+    
+    internal func manageQueue() {
+        guard let nextElement = queuedText.first else { return }
+        queuedText.remove(at: 0)
+        speak(nextElement.text, settings: nextElement.configuration ?? lastSpeechConfiguration)
     }
     
     public func stop() {
@@ -96,5 +120,29 @@ extension SpeechManager {
     
     public func pause() {
         synthesizer.pauseSpeaking(at: .word)
+    }
+    
+    private func saveSpeechConfiguration(
+        volume : Float,
+        rate : Float,
+        pitch : Float,
+        language : SpeechLanguage,
+        voiceName: String?,
+        alone: Bool,
+        withAccessibilitySettings: Bool,
+        preDelay: Double,
+        postDelay: Double
+    ) {
+        lastSpeechConfiguration = SpeechConfiguration(
+            volume: volume,
+            rate: rate,
+            pitch: pitch,
+            language: language,
+            voiceName: voiceName,
+            alone: alone,
+            withAccessibilitySettings: withAccessibilitySettings,
+            preDelay: preDelay,
+            postDelay: postDelay
+        )
     }
 }
