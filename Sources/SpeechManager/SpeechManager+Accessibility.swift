@@ -39,15 +39,17 @@ extension SpeechManager {
 #if os(macOS)
     
     internal func screenReaderSpeak(_ text: String) {
-        NSAccessibility.post(
-            element: NSApp.mainWindow as   Any,
-            notification: .announcementRequested,
-            userInfo: [
-                .announcement:
-                    "\(text)",
-                .priority: NSAccessibilityPriorityLevel.high.rawValue
-            ]
-        )
+        if let mainWindow = NSApp.mainWindow {
+            NSAccessibility.post(
+                element: mainWindow as   Any,
+                notification: .announcementRequested,
+                userInfo: [
+                    .announcement:
+                        "\(text)",
+                    .priority: NSAccessibilityPriorityLevel.high.rawValue
+                ]
+            )
+        }
     }
     
 #elseif os(watchOS)

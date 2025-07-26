@@ -42,7 +42,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     internal var timeToUnmuteVoiceOver: Int = 0
     public var isSpeaking: Bool { get {
         synthesizer.isSpeaking
-    }
+            }
     }
     
     public var isPaused: Bool { get {
@@ -155,13 +155,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         let utterance = AVSpeechUtterance(string: "Sample text")
         return utterance.pitchMultiplier
     }
-    
-    // Tool to clean the text
-    
-    public func cleanTextForSpeech(_ text: String) -> String {
-        return text.unicodeScalars.filter { $0.isASCII }.map(String.init).joined()
-    }
-    
+
     // Use VoiceOver speech engine
     public var accessibilityVoiceEnabled : Bool = false
     // Stop VoiceOver speech engine when speak function starts
@@ -177,79 +171,4 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
         stopVoiceTimerService()
     }
     
-    public func muteSpeech(_ value : Bool) {
-        self.muteStatus = value
-    }
-    
-    public func speak(
-        _ text : String,
-                      volume : Float = 1.0,
-                      rate : Float = 0.5,
-                      pitch : Float = 1.0, language :
-                      SpeechLanguage = .unknown,
-                      voiceName: String? = nil,
-                      alone: Bool = false,
-                      withAccessibilitySettings: Bool = false,
-        preDelay: Double = 0.0,
-        postDelay: Double = 0.0
-    ) {
-        let utterance = AVSpeechUtterance(string: text)
-        if alone {
-            muteScreenReaderVoice = true
-            timeToUnmuteVoiceOver = maxTimeToUnmuteVoiceOver
-        } else {
-            muteScreenReaderVoice = false
-            timeToUnmuteVoiceOver = 0
-        }
-        if self.muteStatus {
-            utterance.volume = 0
-        } else {
-            utterance.volume = volume
-        }
-        utterance.preUtteranceDelay = preDelay
-        utterance.postUtteranceDelay = postDelay
-#if !os(watchOS)
-        if withAccessibilitySettings {
-            utterance.prefersAssistiveTechnologySettings = true
-        } else {
-            utterance.prefersAssistiveTechnologySettings = false
-            utterance.rate = rate
-            utterance.pitchMultiplier = pitch
-        }
-#endif
-        if let nameForVoice = voiceName {
-            if let voice = getVoiceBy(nameForVoice) {
-                utterance.voice = voice
-            }
-        } else if language != .unknown {
-            utterance.voice = AVSpeechSynthesisVoice(language: "\(language.rawValue)")
-        }
-        if synthesizer.isSpeaking{
-            synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
-        }
-        if stopAccessibilityVoiceOnSpeakEvent {
-            stopWithScreenReader()
-        }
-        if accessibilityVoiceEnabled == true {
-            speakWithScreenReader(text)
-        } else {
-            synthesizer.speak(utterance)
-        }
-    }
-    
-    public func stop() {
-        if accessibilityVoiceEnabled == true {
-            stopWithScreenReader()
-        } else {
-            synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
-        }
-    }
-    
-    public func resume() {
-        synthesizer.continueSpeaking()
-    }
-    
-    public func pause() {
-        synthesizer.pauseSpeaking(at: .word)
-    }
 }
