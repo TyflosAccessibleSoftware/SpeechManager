@@ -74,9 +74,6 @@ extension SpeechManager {
                 utterance.voice = voiceToUse
             }
         }
-        if synthesizer.isSpeaking{
-            synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
-        }
         if stopAccessibilityVoiceOnSpeakEvent {
             stopWithScreenReader()
         }
