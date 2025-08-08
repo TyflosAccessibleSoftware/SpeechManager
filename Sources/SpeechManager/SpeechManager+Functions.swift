@@ -121,8 +121,8 @@ extension SpeechManager {
         synthesizer.continueSpeaking()
     }
     
-    public func pause() {
-        synthesizer.pauseSpeaking(at: .word)
+    public func pause(inmediate: Bool = true) {
+        synthesizer.pauseSpeaking(at: inmediate ? .immediate : .word)
     }
     
     private func saveSpeechConfiguration(
