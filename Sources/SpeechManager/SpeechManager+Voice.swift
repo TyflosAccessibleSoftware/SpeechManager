@@ -24,7 +24,9 @@ extension SpeechManager {
             let voices = AVSpeechSynthesisVoice.speechVoices()
             var listOfVoices: [String] = []
             for voice in voices {
-                listOfVoices.append(voice.longName)
+                if voice.downloadStatus == .available {
+                    listOfVoices.append(voice.longName)
+                }
             }
             return listOfVoices
         }
@@ -36,7 +38,9 @@ extension SpeechManager {
             let voices = AVSpeechSynthesisVoice.speechVoices()
             for voice in voices {
                 if var voicesForLanguage = voicesByLanguage[voice.language] {
-                    voicesForLanguage.append(voice)
+                    if voice.downloadStatus == .available {
+                        voicesForLanguage.append(voice)
+                    }
                     voicesByLanguage[voice.language] = voicesForLanguage
                 } else {
                     voicesByLanguage[voice.language] = [voice]
