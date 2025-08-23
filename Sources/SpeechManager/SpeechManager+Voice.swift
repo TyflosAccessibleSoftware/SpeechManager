@@ -50,6 +50,22 @@ extension SpeechManager {
         }
     }
     
+    public var allVoicesByLanguage: [String:[AVSpeechSynthesisVoice]] {
+        get {
+            var voicesByLanguage: [String:[AVSpeechSynthesisVoice]] = [String:[AVSpeechSynthesisVoice]]()
+            let voices = AVSpeechSynthesisVoice.speechVoices()
+            for voice in voices {
+                if var voicesForLanguage = voicesByLanguage[voice.language] {
+                    voicesForLanguage.append(voice)
+                    voicesByLanguage[voice.language] = voicesForLanguage
+                } else {
+                    voicesByLanguage[voice.language] = [voice]
+                }
+            }
+            return voicesByLanguage
+        }
+    }
+    
     public func getVoiceBy(_ longName: String)-> AVSpeechSynthesisVoice? {
         let voices = AVSpeechSynthesisVoice.speechVoices()
         for voice in voices {
