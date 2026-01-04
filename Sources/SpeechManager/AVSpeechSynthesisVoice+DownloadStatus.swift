@@ -8,8 +8,8 @@ public extension AVSpeechSynthesisVoice {
     }
     
     var isInstalledForAVSpeech: Bool {
-            AVSpeechSynthesisVoice.speechVoices().contains { $0.identifier == self.identifier }
-        }
+        AVSpeechSynthesisVoice.speechVoices().contains { $0.identifier == self.identifier }
+    }
     
     var downloadStatus: VoiceDownloadStatus {
         let settings = self.audioFileSettings
@@ -19,6 +19,6 @@ public extension AVSpeechSynthesisVoice {
         if let footprint = settings["AVVoiceAssetFootprint"] as? String, footprint == "AVVoiceAssetFootprintNotRequired" {
             return .available
         }
-        return .available
+        return .needsDownload
     }
 }

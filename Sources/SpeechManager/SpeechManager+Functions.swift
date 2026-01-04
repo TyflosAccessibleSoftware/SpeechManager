@@ -125,6 +125,15 @@ extension SpeechManager {
         synthesizer.pauseSpeaking(at: inmediate ? .immediate : .word)
     }
     
+    public func clearQueue() {
+            queuedText.removeAll()
+        }
+
+        public func stopAndClearQueue() {
+            clearQueue()
+            stop()
+        }
+    
     private func saveSpeechConfiguration(
         volume : Float,
         rate : Float,

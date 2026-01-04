@@ -31,21 +31,8 @@ extension SpeechManager {
     }
     
     public var availableVoicesByLanguage: [String:[AVSpeechSynthesisVoice]] {
-        get {
-            var voicesByLanguage: [String:[AVSpeechSynthesisVoice]] = [String:[AVSpeechSynthesisVoice]]()
-            let voices = installedVoices
-            for voice in voices {
-                if var voicesForLanguage = voicesByLanguage[voice.language] {
-                    if voice.downloadStatus == .available {
-                        voicesForLanguage.append(voice)
-                    }
-                    voicesByLanguage[voice.language] = voicesForLanguage
-                } else {
-                    voicesByLanguage[voice.language] = [voice]
-                }
-            }
-            return voicesByLanguage
-        }
+        let filtered = installedVoices.filter { $0.downloadStatus == .available }
+        return Dictionary(grouping: filtered, by: \.language)
     }
     
     public func getVoiceBy(_ longName: String)-> AVSpeechSynthesisVoice? {

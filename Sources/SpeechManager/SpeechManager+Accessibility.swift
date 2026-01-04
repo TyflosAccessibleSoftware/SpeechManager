@@ -71,7 +71,9 @@ extension SpeechManager {
         if delay > 0 {
             stopWithScreenReader()
             muteScreenReaderVoice = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(delay/1000)) {
+            let seconds = Double(delay) / 1000.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) { [weak self] in
+                guard let self else { return }
                 self.muteScreenReaderVoice = false
                 self.screenReaderSpeak(text)
             }
