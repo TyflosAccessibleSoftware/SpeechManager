@@ -24,20 +24,36 @@ import Foundation
 
 extension SpeechManager {
     public func startVoiceTimerService() {
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
+        guard voiceTimer == nil else { return }
+        
+        voiceTimerService = true
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
+            guard let self else {
+                timer.invalidate()
+                return
+            }
+            
             if self.synthesizer.isSpeaking && self.muteScreenReaderVoice {
                 self.stopWithScreenReader()
             } else if self.timeToUnmuteVoiceOver > 0 {
                 self.timeToUnmuteVoiceOver -= 1
                 self.stopWithScreenReader()
             }
+            
             if self.voiceTimerService == false {
                 timer.invalidate()
+                self.voiceTimer = nil
             }
-        })
+        }
+        
+        RunLoop.main.add(timer, forMode: .common)
+        voiceTimer = timer
     }
     
     public func stopVoiceTimerService() {
         voiceTimerService = false
+        voiceTimer?.invalidate()
+        voiceTimer = nil
     }
 }

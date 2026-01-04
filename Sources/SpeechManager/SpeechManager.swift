@@ -38,6 +38,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     public var onSpokenTextWithRange: ((NSRange,String)->Void)?
     
     internal var voiceTimerService: Bool = true
+    internal var voiceTimer: Timer?
     internal let synthesizer = AVSpeechSynthesizer()
     internal var muteScreenReaderVoice: Bool = false
     internal let maxTimeToUnmuteVoiceOver: Int = 10
