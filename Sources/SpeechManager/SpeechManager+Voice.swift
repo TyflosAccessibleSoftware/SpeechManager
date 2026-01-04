@@ -9,54 +9,36 @@ import UIKit
 
 extension SpeechManager {
     public var availableLanguages: [String] {
-        get {
-            let voices = AVSpeechSynthesisVoice.speechVoices()
-            var listOfLanguages: Set<String> = []
-            for voice in voices {
-                listOfLanguages.insert(voice.language)
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+        return Array(Set(voices.map(\.language))).sorted()
+    }
+    
+    public var installedVoices: [AVSpeechSynthesisVoice] {
+        AVSpeechSynthesisVoice.speechVoices()
+            .sorted {
+                if $0.language != $1.language { return $0.language < $1.language }
+                if $0.quality != $1.quality { return $0.quality.rawValue > $1.quality.rawValue }
+                return $0.longName.localizedCaseInsensitiveCompare($1.longName) == .orderedAscending
             }
-            return Array(listOfLanguages)
-        }
     }
     
     public var availableVoices: [String] {
-        get {
-            let voices = AVSpeechSynthesisVoice.speechVoices()
-            var listOfVoices: [String] = []
-            for voice in voices {
-                if voice.downloadStatus == .available {
-                    listOfVoices.append(voice.longName)
-                }
-            }
-            return listOfVoices
-        }
+        installedVoices.map(\.longName)
+    }
+    
+    public var allVoicesByLanguage: [String:[AVSpeechSynthesisVoice]] {
+        Dictionary(grouping: installedVoices, by: \.language)
     }
     
     public var availableVoicesByLanguage: [String:[AVSpeechSynthesisVoice]] {
         get {
             var voicesByLanguage: [String:[AVSpeechSynthesisVoice]] = [String:[AVSpeechSynthesisVoice]]()
-            let voices = AVSpeechSynthesisVoice.speechVoices()
+            let voices = installedVoices
             for voice in voices {
                 if var voicesForLanguage = voicesByLanguage[voice.language] {
                     if voice.downloadStatus == .available {
                         voicesForLanguage.append(voice)
                     }
-                    voicesByLanguage[voice.language] = voicesForLanguage
-                } else {
-                    voicesByLanguage[voice.language] = [voice]
-                }
-            }
-            return voicesByLanguage
-        }
-    }
-    
-    public var allVoicesByLanguage: [String:[AVSpeechSynthesisVoice]] {
-        get {
-            var voicesByLanguage: [String:[AVSpeechSynthesisVoice]] = [String:[AVSpeechSynthesisVoice]]()
-            let voices = AVSpeechSynthesisVoice.speechVoices()
-            for voice in voices {
-                if var voicesForLanguage = voicesByLanguage[voice.language] {
-                    voicesForLanguage.append(voice)
                     voicesByLanguage[voice.language] = voicesForLanguage
                 } else {
                     voicesByLanguage[voice.language] = [voice]

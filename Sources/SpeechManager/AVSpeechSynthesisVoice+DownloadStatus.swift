@@ -7,6 +7,10 @@ public extension AVSpeechSynthesisVoice {
         case needsDownload
     }
     
+    var isInstalledForAVSpeech: Bool {
+            AVSpeechSynthesisVoice.speechVoices().contains { $0.identifier == self.identifier }
+        }
+    
     var downloadStatus: VoiceDownloadStatus {
         let settings = self.audioFileSettings
         if settings.isEmpty {

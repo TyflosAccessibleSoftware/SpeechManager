@@ -68,10 +68,10 @@ extension SpeechManager {
             requestedVoice = AVSpeechSynthesisVoice(language: "\(language.rawValue)")
         }
         if let voiceToUse = requestedVoice {
-            if voiceToUse.downloadStatus == .needsDownload {
-                delegate?.speechManager(didRequestUnavailableVoice: voiceToUse.longName)
-            } else {
+            if voiceToUse.isInstalledForAVSpeech {
                 utterance.voice = voiceToUse
+            } else {
+                delegate?.speechManager(didRequestUnavailableVoice: voiceToUse.longName)
             }
         }
         if stopAccessibilityVoiceOnSpeakEvent {
