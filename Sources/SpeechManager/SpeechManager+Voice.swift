@@ -35,7 +35,13 @@ extension SpeechManager {
         return Dictionary(grouping: filtered, by: \.language)
     }
     
-    public func getVoiceBy(_ longName: String)-> AVSpeechSynthesisVoice? {
+    public func getVoiceBy(id: String) -> AVSpeechSynthesisVoice? {
+        return AVSpeechSynthesisVoice.speechVoices().first {
+            $0.identifier == id
+        }
+    }
+    
+    public func getVoiceBy(longName: String)-> AVSpeechSynthesisVoice? {
         let voices = AVSpeechSynthesisVoice.speechVoices()
         for voice in voices {
             if voice.longName.lowercased() == longName.lowercased() {

@@ -14,7 +14,6 @@ extension SpeechManager {
     }
     
     public func speak(_ text: String, settings: SpeechConfiguration) {
-        
         self.speak(text,
                    volume: settings.volume,
                    rate: settings.rate,
@@ -33,6 +32,7 @@ extension SpeechManager {
         rate : Float = 0.5,
         pitch : Float = 1.0,
         language : SpeechLanguage = .unknown,
+        voiceId: String? = nil,
         voiceName: String? = nil,
         alone: Bool = false,
         withAccessibilitySettings: Bool = false,
@@ -62,7 +62,9 @@ extension SpeechManager {
         }
 #endif
         var requestedVoice: AVSpeechSynthesisVoice?
-        if let nameForVoice = voiceName, let voice = getVoiceBy(nameForVoice) {
+        if let voiceId = voiceId, let voice = getVoiceBy(id: voiceId) {
+            requestedVoice = voice
+        } else if let nameForVoice = voiceName, let voice = getVoiceBy(longName: requestedVoice = voice) {
             requestedVoice = voice
         } else if language != .unknown {
             requestedVoice = AVSpeechSynthesisVoice(language: "\(language.rawValue)")
@@ -126,13 +128,13 @@ extension SpeechManager {
     }
     
     public func clearQueue() {
-            queuedText.removeAll()
-        }
-
-        public func stopAndClearQueue() {
-            clearQueue()
-            stop()
-        }
+        queuedText.removeAll()
+    }
+    
+    public func stopAndClearQueue() {
+        clearQueue()
+        stop()
+    }
     
     private func saveSpeechConfiguration(
         volume : Float,

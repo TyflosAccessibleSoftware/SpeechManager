@@ -34,8 +34,8 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     public weak var delegate: SpeechManagerDelegate?
     public var muteStatus : Bool = false
     
-    public var onSpokenText: ((String,String)->Void)?
-    public var onSpokenTextWithRange: ((NSRange,String)->Void)?
+    public var onSpokenText: ((String,String,AVSpeechUtterance)->Void)?
+    public var onSpokenTextWithRange: ((NSRange,String,AVSpeechUtterance)->Void)?
     
     internal var voiceTimerService: Bool = true
     internal var voiceTimer: Timer?

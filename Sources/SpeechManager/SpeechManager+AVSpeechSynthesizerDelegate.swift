@@ -30,7 +30,7 @@ import UIKit
 
 extension SpeechManager {
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        onSpokenText?(utterance.speechString,"")
+        onSpokenText?(utterance.speechString,"", utterance)
         if  queuedText.isEmpty{
             delegate?.speechManagerDidFinish()
         } else {
@@ -63,8 +63,8 @@ extension SpeechManager {
         if let swiftRange = Range(characterRange, in: fullText) {
             let spokenPrefix = String(fullText[..<swiftRange.lowerBound])
             let remainingSuffix = String(fullText[swiftRange.lowerBound...])
-            onSpokenText?(spokenPrefix,remainingSuffix)
-            onSpokenTextWithRange?(characterRange, fullText)
+            onSpokenText?(spokenPrefix,remainingSuffix, utterance)
+            onSpokenTextWithRange?(characterRange, fullText, utterance)
         }
     }
 }
