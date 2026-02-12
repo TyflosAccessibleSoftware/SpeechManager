@@ -64,7 +64,7 @@ extension SpeechManager {
         var requestedVoice: AVSpeechSynthesisVoice?
         if let voiceId = voiceId, let voice = getVoiceBy(id: voiceId) {
             requestedVoice = voice
-        } else if let nameForVoice = voiceName, let voice = getVoiceBy(longName: requestedVoice = voice) {
+        } else if let nameForVoice = voiceName, let voice = getVoiceBy(longName: nameForVoice) {
             requestedVoice = voice
         } else if language != .unknown {
             requestedVoice = AVSpeechSynthesisVoice(language: "\(language.rawValue)")
