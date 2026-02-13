@@ -32,6 +32,7 @@ extension SpeechManager {
         rate : Float = 0.5,
         pitch : Float = 1.0,
         language : SpeechLanguage = .unknown,
+        voice: AVSpeechSynthesisVoice? = nil,
         voiceId: String? = nil,
         voiceName: String? = nil,
         alone: Bool = false,
@@ -62,7 +63,9 @@ extension SpeechManager {
         }
 #endif
         var requestedVoice: AVSpeechSynthesisVoice?
-        if let voiceId = voiceId, let voice = getVoiceBy(id: voiceId) {
+        if let voice = voice {
+            requestedVoice = voice
+        } else if let voiceId = voiceId, let voice = getVoiceBy(id: voiceId) {
             requestedVoice = voice
         } else if let nameForVoice = voiceName, let voice = getVoiceBy(longName: nameForVoice) {
             requestedVoice = voice
