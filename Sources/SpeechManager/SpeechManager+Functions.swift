@@ -98,18 +98,23 @@ extension SpeechManager {
     public func speakEnqueued(_ text: String, configuration: SpeechConfiguration? = nil) {
         let newElement = SpeechQueueElement(text: text, configuration: configuration)
         queuedText.append(newElement)
-        if !isSpeaking {
+        guard !isDrainingQueue else { return }
+        isDrainingQueue = true
             manageQueue()
-        }
     }
     
     internal func manageQueue() {
-        guard let nextElement = queuedText.first else { return }
+        guard let nextElement = queuedText.first else {
+            isDrainingQueue = false
+            return
+        }
         queuedText.remove(at: 0)
         speak(nextElement.text, settings: nextElement.configuration ?? lastSpeechConfiguration)
     }
     
     public func stop() {
+        isDrainingQueue = false
+        clearQueue()
         if accessibilityVoiceEnabled == true {
             stopWithScreenReader()
         } else {

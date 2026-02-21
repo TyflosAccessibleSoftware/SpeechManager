@@ -30,7 +30,8 @@ import UIKit
 
 extension SpeechManager {
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        onSpokenText?(utterance.speechString,"", utterance)
+        // onSpokenText?(utterance.speechString,"", utterance)
+        onUtteranceFinished?(utterance.speechString, utterance)
         if  queuedText.isEmpty{
             delegate?.speechManagerDidFinish()
         } else {

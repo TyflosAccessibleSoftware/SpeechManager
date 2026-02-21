@@ -36,6 +36,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     
     public var onSpokenText: ((String,String,AVSpeechUtterance)->Void)?
     public var onSpokenTextWithRange: ((NSRange,String,AVSpeechUtterance)->Void)?
+    public var onUtteranceFinished: ((String, AVSpeechUtterance) -> Void)?
        
     internal let synthesizer = AVSpeechSynthesizer()
 
@@ -57,7 +58,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     
     internal var queuedText: [SpeechQueueElement] = []
     internal var lastSpeechConfiguration = SpeechConfiguration()
-    
+    internal var isDrainingQueue = false
     private override init() {
         super.init()
         synthesizer.delegate = self
