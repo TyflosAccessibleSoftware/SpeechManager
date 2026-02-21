@@ -41,13 +41,6 @@ extension SpeechManager {
         postDelay: Double = 0.0
     ) {
         let utterance = AVSpeechUtterance(string: text)
-        if alone {
-            muteScreenReaderVoice = true
-            timeToUnmuteVoiceOver = maxTimeToUnmuteVoiceOver
-        } else {
-            muteScreenReaderVoice = false
-            timeToUnmuteVoiceOver = 0
-        }
         if self.muteStatus {
             utterance.volume = 0
         } else {
@@ -79,7 +72,9 @@ extension SpeechManager {
                 delegate?.speechManager(didRequestUnavailableVoice: voiceToUse.longName)
             }
         }
-        if stopAccessibilityVoiceOnSpeakEvent {
+        
+        
+        if alone {
             stopWithScreenReader()
         }
         if accessibilityVoiceEnabled {

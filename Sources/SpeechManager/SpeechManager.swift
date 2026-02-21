@@ -36,14 +36,9 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     
     public var onSpokenText: ((String,String,AVSpeechUtterance)->Void)?
     public var onSpokenTextWithRange: ((NSRange,String,AVSpeechUtterance)->Void)?
-    
-    internal var voiceTimerService: Bool = true
-    internal var voiceTimer: Timer?
+       
     internal let synthesizer = AVSpeechSynthesizer()
-    internal var muteScreenReaderVoice: Bool = false
-    internal let maxTimeToUnmuteVoiceOver: Int = 10
-    internal var timeToUnmuteVoiceOver: Int = 0
-    
+
     public var isSpeaking: Bool { get {
         synthesizer.isSpeaking
     }
@@ -58,7 +53,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     public var accessibilityVoiceEnabled : Bool = false
     
     // Stop VoiceOver speech engine when speak function starts
-    public var stopAccessibilityVoiceOnSpeakEvent : Bool = false
+    // public var stopAccessibilityVoiceOnSpeakEvent : Bool = false
     
     internal var queuedText: [SpeechQueueElement] = []
     internal var lastSpeechConfiguration = SpeechConfiguration()
@@ -66,10 +61,7 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     private override init() {
         super.init()
         synthesizer.delegate = self
-        startVoiceTimerService()
-    }
+            }
     
-    deinit {
-        stopVoiceTimerService()
-    }
+    deinit {}
 }

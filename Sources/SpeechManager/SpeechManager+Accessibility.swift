@@ -70,11 +70,9 @@ extension SpeechManager {
     public func speakWithScreenReader(_ text: String, delay: Int = 0) {
         if delay > 0 {
             stopWithScreenReader()
-            muteScreenReaderVoice = true
             let seconds = Double(delay) / 1000.0
             DispatchQueue.main.asyncAfter(deadline: .now() + seconds) { [weak self] in
                 guard let self else { return }
-                self.muteScreenReaderVoice = false
                 self.screenReaderSpeak(text)
             }
         } else {

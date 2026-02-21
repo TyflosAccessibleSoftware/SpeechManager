@@ -59,12 +59,12 @@ extension SpeechManager {
         willSpeakRangeOfSpeechString characterRange: NSRange,
         utterance: AVSpeechUtterance
     ) {
+        guard onSpokenText != nil || onSpokenTextWithRange != nil else { return }
         let fullText = utterance.speechString
-        if let swiftRange = Range(characterRange, in: fullText) {
-            let spokenPrefix = String(fullText[..<swiftRange.lowerBound])
-            let remainingSuffix = String(fullText[swiftRange.lowerBound...])
-            onSpokenText?(spokenPrefix,remainingSuffix, utterance)
-            onSpokenTextWithRange?(characterRange, fullText, utterance)
-        }
+        let nsText = fullText as NSString
+        let prefix = nsText.substring(to: characterRange.location)
+        let suffix = nsText.substring(from: characterRange.location)
+        onSpokenText?(prefix, suffix, utterance)
+        onSpokenTextWithRange?(characterRange, fullText, utterance)
     }
 }
