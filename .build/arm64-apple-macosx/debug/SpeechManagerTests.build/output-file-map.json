@@ -1,0 +1,47 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/master.swiftdeps"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/AVSpeechSynthesisVoiceExtensionsTests.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/AVSpeechSynthesisVoiceExtensionsTests.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/AVSpeechSynthesisVoiceExtensionsTests.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/AVSpeechSynthesisVoiceExtensionsTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/AVSpeechSynthesisVoiceExtensionsTests.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/AVSpeechSynthesisVoiceExtensionsTests.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechConfigurationTests.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechConfigurationTests.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechConfigurationTests.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechConfigurationTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechConfigurationTests.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechConfigurationTests.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechLanguageTests.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechLanguageTests.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechLanguageTests.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechLanguageTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechLanguageTests.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechLanguageTests.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerBehaviorTests.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerBehaviorTests.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerBehaviorTests.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerBehaviorTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerBehaviorTests.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerBehaviorTests.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerTests.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerTests.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerTests.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerTests.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerTests.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerVoiceAPITests.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerVoiceAPITests.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerVoiceAPITests.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerVoiceAPITests~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerVoiceAPITests.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerVoiceAPITests.dia"
+  }
+}

@@ -4,6 +4,7 @@ import XCTest
 final class SpeechManagerTests: XCTestCase {
     private final class DelegateSpy: SpeechManagerDelegate {
         var didFinishCount = 0
+        private var hasFulfilled = false
         private let finished: XCTestExpectation
         
         init(finished: XCTestExpectation) {
@@ -12,8 +13,26 @@ final class SpeechManagerTests: XCTestCase {
         
         func speechManagerDidFinish() {
             didFinishCount += 1
+            guard !hasFulfilled else { return }
+            hasFulfilled = true
             finished.fulfill()
         }
+    }
+    
+    private func waitUntilIdle(
+        _ speech: SpeechManager,
+        timeout: TimeInterval = 2.0,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if !speech.isSpeaking && !speech.isPaused {
+                return
+            }
+            RunLoop.main.run(until: Date().addingTimeInterval(0.05))
+        }
+        XCTFail("SpeechManager did not become idle in time", file: file, line: line)
     }
     
     
@@ -21,6 +40,7 @@ final class SpeechManagerTests: XCTestCase {
     func testSpeak_simple() {
         let speech = SpeechManager.shared
         speech.accessibilityVoiceEnabled = false
+        speech.onUtteranceFinished = nil
         
         let finishedExpectation = expectation(description: "SpeechManager delegate didFinish called")
         let spy = DelegateSpy(finished: finishedExpectation)
@@ -39,6 +59,7 @@ final class SpeechManagerTests: XCTestCase {
         wait(for: [finishedExpectation], timeout: 5.0)
         
         speech.stopAndClearQueue()
+        waitUntilIdle(speech)
         speech.delegate = nil
     }
     
@@ -46,12 +67,15 @@ final class SpeechManagerTests: XCTestCase {
         let speech = SpeechManager.shared
         speech.accessibilityVoiceEnabled = false
         speech.stopAndClearQueue()
+        waitUntilIdle(speech)
         
         defer {
             speech.stopAndClearQueue()
+            waitUntilIdle(speech)
             speech.delegate = nil
             speech.onSpokenText = nil
             speech.onSpokenTextWithRange = nil
+            speech.onUtteranceFinished = nil
         }
         let expected = ["One", "Two", "Three", "four", "five"]
         var finishedUtterances: [String] = []

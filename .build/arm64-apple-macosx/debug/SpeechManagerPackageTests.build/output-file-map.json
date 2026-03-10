@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/master.swiftdeps"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/runner.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/runner.dia"
+  }
+}

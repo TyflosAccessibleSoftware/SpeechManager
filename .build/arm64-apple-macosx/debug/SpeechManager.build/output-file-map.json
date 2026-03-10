@@ -1,0 +1,82 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/master.swiftdeps"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+DownloadStatus.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+DownloadStatus.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+DownloadStatus.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+DownloadStatus~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+DownloadStatus.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+DownloadStatus.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+longName.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+longName.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+longName.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+longName~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+longName.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+longName.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechConfiguration.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechConfiguration.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechConfiguration.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechConfiguration~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechConfiguration.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechConfiguration.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechLanguage.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechLanguage.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechLanguage.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechLanguage~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechLanguage.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechLanguage.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+AVSpeechSynthesizerDelegate.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+AVSpeechSynthesizerDelegate.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+AVSpeechSynthesizerDelegate.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+AVSpeechSynthesizerDelegate~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+AVSpeechSynthesizerDelegate.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+AVSpeechSynthesizerDelegate.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Accessibility.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Accessibility.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Accessibility.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Accessibility~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Accessibility.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Accessibility.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Functions.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Functions.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Functions.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Functions~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Functions.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Functions.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Voice.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Voice.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Voice.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Voice~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Voice.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Voice.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManagerDelegate.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManagerDelegate.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManagerDelegate.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManagerDelegate~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManagerDelegate.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManagerDelegate.dia"
+  },
+  "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechQueueElement.swift": {
+    "dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechQueueElement.d",
+    "object": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechQueueElement.swift.o",
+    "swiftmodule": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechQueueElement~partial.swiftmodule",
+    "swift-dependencies": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechQueueElement.swiftdeps",
+    "diagnostics": "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechQueueElement.dia"
+  }
+}

@@ -1,0 +1,923 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.xctest/Contents/MacOS/SpeechManagerPackageTests",
+      "packagePath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager",
+      "productName" : "SpeechManagerPackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.SpeechManager-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/sources",
+      "importPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+DownloadStatus.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+longName.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechConfiguration.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechLanguage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+AVSpeechSynthesizerDelegate.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Accessibility.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Functions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Voice.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManagerDelegate.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechQueueElement.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SpeechManager",
+      "moduleOutputPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules/SpeechManager.swiftmodule",
+      "objects" : [
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+DownloadStatus.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+longName.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechConfiguration.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechLanguage.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+AVSpeechSynthesizerDelegate.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Accessibility.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Functions.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Voice.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManagerDelegate.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechQueueElement.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx12.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/include/SpeechManager-Swift.h",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "speechmanager"
+      ],
+      "outputFileMapPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+DownloadStatus.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+longName.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechConfiguration.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechLanguage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+AVSpeechSynthesizerDelegate.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Accessibility.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Functions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Voice.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManagerDelegate.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechQueueElement.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules/SpeechManager.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+DownloadStatus.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+longName.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechConfiguration.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechLanguage.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+AVSpeechSynthesizerDelegate.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Accessibility.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Functions.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Voice.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManagerDelegate.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechQueueElement.swift"
+      ],
+      "tempsPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.SpeechManagerPackageTests-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/sources",
+      "importPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules/SpeechManagerTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SpeechManagerPackageTests",
+      "moduleOutputPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules/SpeechManagerPackageTests.swiftmodule",
+      "objects" : [
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx12.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/include/SpeechManagerPackageTests-Swift.h",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "speechmanager"
+      ],
+      "outputFileMapPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules/SpeechManagerPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.SpeechManagerTests-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/sources",
+      "importPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/AVSpeechSynthesisVoiceExtensionsTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechConfigurationTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechLanguageTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerBehaviorTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerVoiceAPITests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules/SpeechManager.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SpeechManagerTests",
+      "moduleOutputPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules/SpeechManagerTests.swiftmodule",
+      "objects" : [
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/AVSpeechSynthesisVoiceExtensionsTests.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechConfigurationTests.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechLanguageTests.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerBehaviorTests.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerTests.swift.o",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerVoiceAPITests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "speechmanager"
+      ],
+      "outputFileMapPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/AVSpeechSynthesisVoiceExtensionsTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechConfigurationTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechLanguageTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerBehaviorTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerVoiceAPITests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules/SpeechManagerTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/AVSpeechSynthesisVoiceExtensionsTests.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechConfigurationTests.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechLanguageTests.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerBehaviorTests.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerTests.swift",
+        "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerVoiceAPITests.swift"
+      ],
+      "tempsPath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "SpeechManager" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "SpeechManager",
+      "-package-name",
+      "speechmanager",
+      "-c",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+DownloadStatus.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+longName.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechConfiguration.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechLanguage.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+AVSpeechSynthesizerDelegate.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Accessibility.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Functions.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Voice.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManagerDelegate.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechQueueElement.swift",
+      "-I",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx12.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/include/SpeechManager-Swift.h",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "speechmanager",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "SpeechManagerPackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "SpeechManagerPackageTests",
+      "-package-name",
+      "speechmanager",
+      "-c",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.derived/runner.swift",
+      "-I",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx12.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/include/SpeechManagerPackageTests-Swift.h",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "speechmanager",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "SpeechManagerTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "SpeechManagerTests",
+      "-package-name",
+      "speechmanager",
+      "-c",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/AVSpeechSynthesisVoiceExtensionsTests.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechConfigurationTests.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechLanguageTests.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerBehaviorTests.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerTests.swift",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerVoiceAPITests.swift",
+      "-I",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "speechmanager",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "SpeechManager" : [
+
+    ],
+    "SpeechManagerPackageTests" : [
+      "SpeechManagerTests",
+      "SpeechManager"
+    ],
+    "SpeechManagerTests" : [
+      "SpeechManager"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+DownloadStatus.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/AVSpeechSynthesisVoice+longName.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechConfiguration.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechLanguage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+AVSpeechSynthesizerDelegate.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Accessibility.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Functions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager+Voice.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechManagerDelegate.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Sources/SpeechManager/SpeechQueueElement.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/sources"
+    },
+    "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/sources"
+    },
+    "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+DownloadStatus.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/AVSpeechSynthesisVoice+longName.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechConfiguration.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechLanguage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+AVSpeechSynthesizerDelegate.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Accessibility.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Functions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager+Voice.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechManagerDelegate.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/SpeechQueueElement.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/AVSpeechSynthesisVoiceExtensionsTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechConfigurationTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechLanguageTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerBehaviorTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/SpeechManagerVoiceAPITests.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerPackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/AVSpeechSynthesisVoiceExtensionsTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechConfigurationTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechLanguageTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerBehaviorTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/Tests/SpeechManagerTests/SpeechManagerVoiceAPITests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManagerTests.build/sources"
+    },
+    "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

@@ -72,6 +72,28 @@ struct SpeechManagerVoiceAPITests {
         let found = mgr.getVoiceBy(longName: query)
         #expect(found?.identifier == voice.identifier)
     }
+
+    @Test("getVoicesBy(_:) devuelve solo voces con ese name",
+          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
+    func getVoicesByName() throws {
+        let mgr = SpeechManager.shared
+        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
+
+        let matches = mgr.getVoicesBy(voice.name.uppercased())
+        #expect(matches.isEmpty == false)
+        #expect(matches.allSatisfy { $0.name.caseInsensitiveCompare(voice.name) == .orderedSame })
+    }
+
+    @Test("getVoicesFor(language:) devuelve solo voces de ese idioma",
+          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
+    func getVoicesForLanguage() throws {
+        let mgr = SpeechManager.shared
+        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
+
+        let matches = mgr.getVoicesFor(language: voice.language.uppercased())
+        #expect(matches.isEmpty == false)
+        #expect(matches.allSatisfy { $0.language.caseInsensitiveCompare(voice.language) == .orderedSame })
+    }
     
     @Test("findVoice(matching:) encuentra por name o longName",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
@@ -85,5 +107,19 @@ struct SpeechManagerVoiceAPITests {
         #expect(found != nil)
         #expect(found!.name.localizedCaseInsensitiveContains(fragment)
                 || found!.longName.localizedCaseInsensitiveContains(fragment))
+    }
+
+    @Test("Valores por defecto de la voz actual son coherentes",
+          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
+    func defaultVoiceValuesAreCoherent() {
+        let mgr = SpeechManager.shared
+        let utterance = AVSpeechUtterance(string: "Sample text")
+
+        #expect(mgr.defaultVoiceLanguage == (utterance.voice?.language ?? ""))
+        #expect(mgr.defaultVoiceName == (utterance.voice?.name ?? ""))
+        #expect(mgr.defaultVoiceLongName == (utterance.voice?.longName ?? ""))
+        #expect(mgr.defaultVoiceVolume == utterance.volume)
+        #expect(mgr.defaultVoiceRate == utterance.rate)
+        #expect(mgr.defaultVoicepitchMultiplier == utterance.pitchMultiplier)
     }
 }

@@ -1,0 +1,3 @@
+module SpeechManager {
+    header "/Users/jonathanchacon/Trabajo/TAS/Swift/libs/SpeechManager/.build/arm64-apple-macosx/debug/SpeechManager.build/include/SpeechManager-Swift.h"
+}
