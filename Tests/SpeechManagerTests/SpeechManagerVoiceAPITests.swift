@@ -4,7 +4,7 @@ import AVFoundation
 
 struct SpeechManagerVoiceAPITests {
     
-    @Test("SpeechManager.availableLanguages: set único + ordenado",
+    @Test("SpeechManager.availableLanguages: unique and sorted set",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func availableLanguagesIsUniqueAndSorted() {
         let mgr = SpeechManager.shared
@@ -14,7 +14,7 @@ struct SpeechManagerVoiceAPITests {
         #expect(langs.allSatisfy { !$0.isEmpty })
     }
     
-    @Test("SpeechManager.installedVoices: no vacío si speechVoices() no vacío",
+    @Test("SpeechManager.installedVoices: non-empty when speechVoices() is non-empty",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func installedVoicesNotEmpty() {
         let mgr = SpeechManager.shared
@@ -28,7 +28,7 @@ struct SpeechManagerVoiceAPITests {
         #expect(mgr.availableVoices == mgr.installedVoices.map(\.longName))
     }
     
-    @Test("SpeechManager.allVoicesByLanguage agrupa correctamente",
+    @Test("SpeechManager.allVoicesByLanguage groups correctly",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func allVoicesByLanguageGroupsCorrectly() {
         let mgr = SpeechManager.shared
@@ -40,7 +40,7 @@ struct SpeechManagerVoiceAPITests {
         }
     }
     
-    @Test("SpeechManager.availableVoicesByLanguage: subset de installedVoices con downloadStatus == .available",
+    @Test("SpeechManager.availableVoicesByLanguage: subset of installedVoices with downloadStatus == .available",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func availableVoicesByLanguageIsFilteredSubset() {
         let mgr = SpeechManager.shared
@@ -52,7 +52,7 @@ struct SpeechManagerVoiceAPITests {
         #expect(filtered.allSatisfy { installedIDs.contains($0.identifier) })
     }
     
-    @Test("getVoiceBy(id:) devuelve la voz correcta",
+    @Test("getVoiceBy(id:) returns the correct voice",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func getVoiceById() throws {
         let mgr = SpeechManager.shared
@@ -62,7 +62,7 @@ struct SpeechManagerVoiceAPITests {
         #expect(found?.identifier == voice.identifier)
     }
     
-    @Test("getVoiceBy(longName:) es case-insensitive",
+    @Test("getVoiceBy(longName:) is case-insensitive",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func getVoiceByLongNameCaseInsensitive() throws {
         let mgr = SpeechManager.shared
@@ -73,7 +73,7 @@ struct SpeechManagerVoiceAPITests {
         #expect(found?.identifier == voice.identifier)
     }
 
-    @Test("getVoicesBy(_:) devuelve solo voces con ese name",
+    @Test("getVoicesBy(_:) returns only voices with that name",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func getVoicesByName() throws {
         let mgr = SpeechManager.shared
@@ -84,7 +84,7 @@ struct SpeechManagerVoiceAPITests {
         #expect(matches.allSatisfy { $0.name.caseInsensitiveCompare(voice.name) == .orderedSame })
     }
 
-    @Test("getVoicesFor(language:) devuelve solo voces de ese idioma",
+    @Test("getVoicesFor(language:) returns only voices for that language",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func getVoicesForLanguage() throws {
         let mgr = SpeechManager.shared
@@ -95,7 +95,7 @@ struct SpeechManagerVoiceAPITests {
         #expect(matches.allSatisfy { $0.language.caseInsensitiveCompare(voice.language) == .orderedSame })
     }
     
-    @Test("findVoice(matching:) encuentra por name o longName",
+    @Test("findVoice(matching:) finds by name or longName",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func findVoiceMatching() throws {
         let mgr = SpeechManager.shared
@@ -109,7 +109,7 @@ struct SpeechManagerVoiceAPITests {
                 || found!.longName.localizedCaseInsensitiveContains(fragment))
     }
 
-    @Test("Valores por defecto de la voz actual son coherentes",
+    @Test("Current default voice values are coherent",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func defaultVoiceValuesAreCoherent() {
         let mgr = SpeechManager.shared

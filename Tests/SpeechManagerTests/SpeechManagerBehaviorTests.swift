@@ -27,11 +27,15 @@ final class SpeechManagerBehaviorTests: XCTestCase {
         manager.delegate = nil
         manager.onSpokenText = nil
         manager.onSpokenTextWithRange = nil
+        manager.onFinishedSpokenText = nil
+        manager.onFinishedSpokenTextWithRange = nil
         manager.onUtteranceFinished = nil
+        manager.onSpeechManagerError = nil
         manager.accessibilityVoiceEnabled = false
         manager.muteStatus = false
         manager.isDrainingQueue = false
         manager.lastSpeechConfiguration = SpeechConfiguration()
+        manager.pendingFinishedRanges = [:]
     }
 
     override func tearDown() {
@@ -39,7 +43,11 @@ final class SpeechManagerBehaviorTests: XCTestCase {
         manager.delegate = nil
         manager.onSpokenText = nil
         manager.onSpokenTextWithRange = nil
+        manager.onFinishedSpokenText = nil
+        manager.onFinishedSpokenTextWithRange = nil
         manager.onUtteranceFinished = nil
+        manager.onSpeechManagerError = nil
+        manager.pendingFinishedRanges = [:]
         super.tearDown()
     }
 
@@ -82,6 +90,19 @@ final class SpeechManagerBehaviorTests: XCTestCase {
         manager.clearQueue()
 
         XCTAssertTrue(manager.queuedText.isEmpty)
+    }
+
+    func testSpeakSSMLEnqueuedStoresSSMLConfiguration() {
+        manager.isDrainingQueue = true
+        let configuration = SpeechConfiguration(language: .Spanish, punctuationVerbosity: .all)
+
+        manager.speakSSMLEnqueued("<speak>Hello</speak>", configuration: configuration)
+
+        XCTAssertEqual(manager.queuedText.count, 1)
+        XCTAssertEqual(manager.queuedText.first?.text, "<speak>Hello</speak>")
+        XCTAssertEqual(manager.queuedText.first?.configuration?.textFormat, .ssml)
+        XCTAssertEqual(manager.queuedText.first?.configuration?.language, .Spanish)
+        XCTAssertEqual(manager.queuedText.first?.configuration?.punctuationVerbosity, .all)
     }
 
     func testStopAndClearQueueClearsQueueAndDrainingState() {
@@ -172,5 +193,74 @@ final class SpeechManagerBehaviorTests: XCTestCase {
         XCTAssertEqual(spokenText, "Hello world")
         XCTAssertEqual(prefixResult, "Hello ")
         XCTAssertEqual(suffixResult, "world")
+    }
+
+    func testWillSpeakRangeCompletesPreviousRangeWhenNextRangeStarts() {
+        var finishedRange: NSRange?
+        var finishedText: String?
+        var completedPrefix: String?
+        var remainingSuffix: String?
+        let utterance = AVSpeechUtterance(string: "Hello world")
+
+        manager.onFinishedSpokenTextWithRange = { range, text, _ in
+            finishedRange = range
+            finishedText = text
+        }
+        manager.onFinishedSpokenText = { prefix, suffix, _ in
+            completedPrefix = prefix
+            remainingSuffix = suffix
+        }
+
+        manager.speechSynthesizer(
+            manager.synthesizer,
+            willSpeakRangeOfSpeechString: NSRange(location: 0, length: 5),
+            utterance: utterance
+        )
+        manager.speechSynthesizer(
+            manager.synthesizer,
+            willSpeakRangeOfSpeechString: NSRange(location: 6, length: 5),
+            utterance: utterance
+        )
+
+        XCTAssertEqual(finishedRange, NSRange(location: 0, length: 5))
+        XCTAssertEqual(finishedText, "Hello world")
+        XCTAssertEqual(completedPrefix, "Hello")
+        XCTAssertEqual(remainingSuffix, " world")
+    }
+
+    func testDidFinishFlushesLastPendingRange() {
+        var finishedRanges: [NSRange] = []
+        let utterance = AVSpeechUtterance(string: "Hello world")
+        manager.onFinishedSpokenTextWithRange = { range, _, _ in
+            finishedRanges.append(range)
+        }
+
+        manager.speechSynthesizer(
+            manager.synthesizer,
+            willSpeakRangeOfSpeechString: NSRange(location: 0, length: 5),
+            utterance: utterance
+        )
+        manager.speechSynthesizer(
+            manager.synthesizer,
+            willSpeakRangeOfSpeechString: NSRange(location: 6, length: 5),
+            utterance: utterance
+        )
+        manager.speechSynthesizer(manager.synthesizer, didFinish: utterance)
+
+        XCTAssertEqual(finishedRanges, [
+            NSRange(location: 0, length: 5),
+            NSRange(location: 6, length: 5)
+        ])
+    }
+
+    func testMakeUtteranceAppliesPlainTextPunctuationVerbosity() {
+        let utterance = manager.makeUtterance(
+            from: "Hello, world!",
+            textFormat: .plainText,
+            punctuationVerbosity: .all,
+            language: .English
+        )
+
+        XCTAssertEqual(utterance.speechString, "Hello comma world exclamation mark")
     }
 }

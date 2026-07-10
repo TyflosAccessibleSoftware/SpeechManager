@@ -30,9 +30,11 @@ import UIKit
 
 extension SpeechManager {
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        flushFinishedRange(for: utterance)
         // onSpokenText?(utterance.speechString,"", utterance)
         onUtteranceFinished?(utterance.speechString, utterance)
         if  queuedText.isEmpty{
+            isDrainingQueue = false
             delegate?.speechManagerDidFinish()
         } else {
             manageQueue()
@@ -44,6 +46,7 @@ extension SpeechManager {
     }
     
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        pendingFinishedRanges.removeValue(forKey: ObjectIdentifier(utterance))
         delegate?.speechManagerDidCancel()
     }
     
@@ -60,6 +63,8 @@ extension SpeechManager {
         willSpeakRangeOfSpeechString characterRange: NSRange,
         utterance: AVSpeechUtterance
     ) {
+        flushFinishedRange(for: utterance)
+        pendingFinishedRanges[ObjectIdentifier(utterance)] = characterRange
         let fullText = utterance.speechString
         onSpokenTextWithRange?(characterRange, fullText, utterance)
         guard onSpokenText != nil else { return }
@@ -67,5 +72,19 @@ extension SpeechManager {
         let prefix = nsText.substring(to: characterRange.location)
         let suffix = nsText.substring(from: characterRange.location)
         onSpokenText?(prefix, suffix, utterance)
+    }
+
+    internal func flushFinishedRange(for utterance: AVSpeechUtterance) {
+        let key = ObjectIdentifier(utterance)
+        guard let finishedRange = pendingFinishedRanges.removeValue(forKey: key) else { return }
+        let fullText = utterance.speechString
+        onFinishedSpokenTextWithRange?(finishedRange, fullText, utterance)
+        delegate?.speechManager(didFinishSpeakingRange: finishedRange, in: fullText)
+        guard onFinishedSpokenText != nil else { return }
+        let nsText = fullText as NSString
+        let finishedLocation = min(finishedRange.location + finishedRange.length, nsText.length)
+        let prefix = nsText.substring(to: finishedLocation)
+        let suffix = nsText.substring(from: finishedLocation)
+        onFinishedSpokenText?(prefix, suffix, utterance)
     }
 }

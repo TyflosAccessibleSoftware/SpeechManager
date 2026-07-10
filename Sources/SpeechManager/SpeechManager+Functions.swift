@@ -19,11 +19,14 @@ extension SpeechManager {
                    rate: settings.rate,
                    pitch: settings.pitch,
                    language: settings.language,
+                   voiceId: settings.voiceId,
                    voiceName: settings.voiceName,
                    alone: settings.alone,
                    withAccessibilitySettings: settings.withAccessibilitySettings,
                    preDelay: settings.preDelay,
-                   postDelay: settings.postDelay)
+                   postDelay: settings.postDelay,
+                   punctuationVerbosity: settings.punctuationVerbosity,
+                   textFormat: settings.textFormat)
     }
     
     public func speak(
@@ -38,23 +41,10 @@ extension SpeechManager {
         alone: Bool = false,
         withAccessibilitySettings: Bool = false,
         preDelay: Double = 0.0,
-        postDelay: Double = 0.0
+        postDelay: Double = 0.0,
+        punctuationVerbosity: SpeechPunctuationVerbosity = .none,
+        textFormat: SpeechTextFormat = .plainText
     ) {
-        let utterance = AVSpeechUtterance(string: text)
-        if self.muteStatus {
-            utterance.volume = 0
-        } else {
-            utterance.volume = volume
-        }
-        utterance.preUtteranceDelay = preDelay
-        utterance.postUtteranceDelay = postDelay
-#if !os(watchOS)
-        utterance.prefersAssistiveTechnologySettings = withAccessibilitySettings
-        if !withAccessibilitySettings {
-            utterance.rate = rate
-            utterance.pitchMultiplier = pitch
-        }
-#endif
         var requestedVoice: AVSpeechSynthesisVoice?
         if let voice = voice {
             requestedVoice = voice
@@ -66,19 +56,42 @@ extension SpeechManager {
             requestedVoice = AVSpeechSynthesisVoice(language: "\(language.rawValue)")
         }
         if let voiceToUse = requestedVoice {
-            if voiceToUse.isInstalledForAVSpeech {
-                utterance.voice = voiceToUse
-            } else {
+            if !voiceToUse.isInstalledForAVSpeech {
                 delegate?.speechManager(didRequestUnavailableVoice: voiceToUse.longName)
+                requestedVoice = nil
             }
         }
+
+        let utterance = makeUtterance(
+            from: text,
+            textFormat: textFormat,
+            punctuationVerbosity: punctuationVerbosity,
+            language: language
+        )
+        configure(
+            utterance,
+            volume: volume,
+            rate: rate,
+            pitch: pitch,
+            voice: requestedVoice,
+            withAccessibilitySettings: withAccessibilitySettings,
+            preDelay: preDelay,
+            postDelay: postDelay,
+            textFormat: textFormat
+        )
         
         
         if alone {
             stopWithScreenReader()
         }
         if accessibilityVoiceEnabled {
-            speakWithScreenReader(text)
+            let screenReaderText = textForScreenReader(
+                from: text,
+                textFormat: textFormat,
+                punctuationVerbosity: punctuationVerbosity,
+                language: language
+            )
+            speakWithScreenReader(screenReaderText)
         } else {
             synthesizer.speak(utterance)
         }
@@ -87,12 +100,21 @@ extension SpeechManager {
             rate: rate,
             pitch: pitch,
             language: language,
+            voiceId: voiceId,
             voiceName: voiceName,
             alone: alone,
             withAccessibilitySettings: withAccessibilitySettings,
             preDelay: preDelay,
-            postDelay: postDelay
+            postDelay: postDelay,
+            punctuationVerbosity: punctuationVerbosity,
+            textFormat: textFormat
         )
+    }
+
+    public func speakSSML(_ ssml: String, settings: SpeechConfiguration = SpeechConfiguration()) {
+        var ssmlSettings = settings
+        ssmlSettings.textFormat = .ssml
+        speak(ssml, settings: ssmlSettings)
     }
     
     public func speakEnqueued(_ text: String, configuration: SpeechConfiguration? = nil) {
@@ -101,6 +123,12 @@ extension SpeechManager {
         guard !isDrainingQueue else { return }
         isDrainingQueue = true
             manageQueue()
+    }
+
+    public func speakSSMLEnqueued(_ ssml: String, configuration: SpeechConfiguration? = nil) {
+        var ssmlConfiguration = configuration ?? lastSpeechConfiguration
+        ssmlConfiguration.textFormat = .ssml
+        speakEnqueued(ssml, configuration: ssmlConfiguration)
     }
     
     internal func manageQueue() {
@@ -115,6 +143,7 @@ extension SpeechManager {
     public func stop() {
         isDrainingQueue = false
         clearQueue()
+        pendingFinishedRanges.removeAll()
         if accessibilityVoiceEnabled == true {
             stopWithScreenReader()
         } else {
@@ -126,8 +155,13 @@ extension SpeechManager {
         synthesizer.continueSpeaking()
     }
     
+    public func pause(immediate: Bool = true) {
+        synthesizer.pauseSpeaking(at: immediate ? .immediate : .word)
+    }
+
+    @available(*, deprecated, renamed: "pause(immediate:)")
     public func pause(inmediate: Bool = true) {
-        synthesizer.pauseSpeaking(at: inmediate ? .immediate : .word)
+        pause(immediate: inmediate)
     }
     
     public func clearQueue() {
@@ -144,22 +178,108 @@ extension SpeechManager {
         rate : Float,
         pitch : Float,
         language : SpeechLanguage,
+        voiceId: String?,
         voiceName: String?,
         alone: Bool,
         withAccessibilitySettings: Bool,
         preDelay: Double,
-        postDelay: Double
+        postDelay: Double,
+        punctuationVerbosity: SpeechPunctuationVerbosity,
+        textFormat: SpeechTextFormat
     ) {
         lastSpeechConfiguration = SpeechConfiguration(
             volume: volume,
             rate: rate,
             pitch: pitch,
             language: language,
+            voiceId: voiceId,
             voiceName: voiceName,
             alone: alone,
             withAccessibilitySettings: withAccessibilitySettings,
             preDelay: preDelay,
-            postDelay: postDelay
+            postDelay: postDelay,
+            punctuationVerbosity: punctuationVerbosity,
+            textFormat: textFormat
         )
+    }
+
+    internal func makeUtterance(
+        from text: String,
+        textFormat: SpeechTextFormat,
+        punctuationVerbosity: SpeechPunctuationVerbosity,
+        language: SpeechLanguage
+    ) -> AVSpeechUtterance {
+        switch textFormat {
+        case .plainText:
+            return AVSpeechUtterance(
+                string: SpeechTextProcessor.processedText(
+                    from: text,
+                    punctuationVerbosity: punctuationVerbosity,
+                    language: language
+                )
+            )
+        case .ssml:
+            if #available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *) {
+                if let utterance = AVSpeechUtterance(ssmlRepresentation: text) {
+                    return utterance
+                }
+                report(.invalidSSML)
+            } else {
+                report(.ssmlUnavailable)
+            }
+            let fallbackText = SpeechTextProcessor.plainText(fromSSML: text)
+            return AVSpeechUtterance(
+                string: SpeechTextProcessor.processedText(
+                    from: fallbackText,
+                    punctuationVerbosity: punctuationVerbosity,
+                    language: language
+                )
+            )
+        }
+    }
+
+    private func configure(
+        _ utterance: AVSpeechUtterance,
+        volume: Float,
+        rate: Float,
+        pitch: Float,
+        voice: AVSpeechSynthesisVoice?,
+        withAccessibilitySettings: Bool,
+        preDelay: Double,
+        postDelay: Double,
+        textFormat: SpeechTextFormat
+    ) {
+        utterance.volume = muteStatus ? 0 : volume
+        utterance.preUtteranceDelay = preDelay
+        utterance.postUtteranceDelay = postDelay
+#if !os(watchOS)
+        utterance.prefersAssistiveTechnologySettings = withAccessibilitySettings
+        if !withAccessibilitySettings && textFormat == .plainText {
+            utterance.rate = rate
+            utterance.pitchMultiplier = pitch
+        }
+#endif
+        if let voice {
+            utterance.voice = voice
+        }
+    }
+
+    private func textForScreenReader(
+        from text: String,
+        textFormat: SpeechTextFormat,
+        punctuationVerbosity: SpeechPunctuationVerbosity,
+        language: SpeechLanguage
+    ) -> String {
+        let plainText = textFormat == .ssml ? SpeechTextProcessor.plainText(fromSSML: text) : text
+        return SpeechTextProcessor.processedText(
+            from: plainText,
+            punctuationVerbosity: punctuationVerbosity,
+            language: language
+        )
+    }
+
+    private func report(_ error: SpeechManagerError) {
+        onSpeechManagerError?(error)
+        delegate?.speechManager(didFailWith: error)
     }
 }

@@ -4,7 +4,7 @@ import AVFoundation
 
 struct AVSpeechSynthesisVoiceExtensionsTests {
     
-    @Test("AVSpeechSynthesisVoice.longName: incluye name e idioma",
+    @Test("AVSpeechSynthesisVoice.longName: includes name and language",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func longNameContainsNameAndLanguage() throws {
         let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
@@ -14,7 +14,7 @@ struct AVSpeechSynthesisVoiceExtensionsTests {
         #expect(ln.contains("(\(voice.language))"))
     }
     
-    @Test("AVSpeechSynthesisVoice.voices(forLanguage:): devuelve solo ese idioma",
+    @Test("AVSpeechSynthesisVoice.voices(forLanguage:): returns only that language",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func voicesForLanguageFiltersCorrectly() throws {
         let anyVoice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
@@ -25,7 +25,7 @@ struct AVSpeechSynthesisVoiceExtensionsTests {
         #expect(voices.allSatisfy { $0.language == lang })
     }
     
-    @Test("AVSpeechSynthesisVoice.voice(matchingName:): encuentra por longName",
+    @Test("AVSpeechSynthesisVoice.voice(matchingName:): finds by longName",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func voiceMatchingByLongName() throws {
         let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
@@ -34,7 +34,7 @@ struct AVSpeechSynthesisVoiceExtensionsTests {
         #expect(found?.identifier == voice.identifier)
     }
     
-    @Test("AVSpeechSynthesisVoice.voice(matchingName:): encuentra por name (si hay match único al principio)",
+    @Test("AVSpeechSynthesisVoice.voice(matchingName:): finds by name",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func voiceMatchingByName() throws {
         let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
@@ -45,14 +45,14 @@ struct AVSpeechSynthesisVoiceExtensionsTests {
                 || found!.longName.caseInsensitiveCompare(voice.name) == .orderedSame)
     }
     
-    @Test("AVSpeechSynthesisVoice.isInstalledForAVSpeech: true para voces listadas por speechVoices()",
+    @Test("AVSpeechSynthesisVoice.isInstalledForAVSpeech: true for voices listed by speechVoices()",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func installedFlagIsTrueForListedVoices() throws {
         let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
         #expect(voice.isInstalledForAVSpeech == true)
     }
     
-    @Test("AVSpeechSynthesisVoice.downloadStatus: coherencia con audioFileSettings (propiedad computada)",
+    @Test("AVSpeechSynthesisVoice.downloadStatus: consistent with audioFileSettings",
           .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
     func downloadStatusIsConsistentWithSettings() throws {
         let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)

@@ -3,12 +3,12 @@ import Testing
 
 struct SpeechLanguageTests {
 
-    @Test("SpeechLanguage: rawValue de unknown es vacío")
+    @Test("SpeechLanguage: unknown rawValue is empty")
     func unknownIsEmpty() {
         #expect(SpeechLanguage.unknown.rawValue == "")
     }
 
-    @Test("SpeechLanguage: rawValues conocidos (smoke test)")
+    @Test("SpeechLanguage: known rawValues smoke test")
     func knownRawValues() {
         #expect(SpeechLanguage.Spanish.rawValue == "es-ES")
         #expect(SpeechLanguage.English.rawValue == "en-US")

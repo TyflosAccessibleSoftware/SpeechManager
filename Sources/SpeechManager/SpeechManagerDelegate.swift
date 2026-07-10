@@ -7,6 +7,8 @@ public protocol SpeechManagerDelegate: AnyObject {
     func speechManagerDidContinue()
     func speechManagerDidCancel()
     func speechManager(didRequestUnavailableVoice voice: String)
+    func speechManager(didFailWith error: SpeechManagerError)
+    func speechManager(didFinishSpeakingRange range: NSRange, in text: String)
 }
 
 public extension SpeechManagerDelegate {
@@ -16,4 +18,6 @@ public extension SpeechManagerDelegate {
     func speechManagerDidContinue() {}
     func speechManagerDidCancel() {}
     func speechManager(didRequestUnavailableVoice voice: String) {}
+    func speechManager(didFailWith error: SpeechManagerError) {}
+    func speechManager(didFinishSpeakingRange range: NSRange, in text: String) {}
 }

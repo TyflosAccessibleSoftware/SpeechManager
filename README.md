@@ -43,6 +43,58 @@ let speech = SpeechManager.shared
 speech.speakWithScreenReader("Hello World!")
 ```
 
+### Punctuation verbosity
+
+SpeechManager can explicitly verbalize punctuation while keeping the default behavior compatible with previous versions.
+
+```
+let speech = SpeechManager.shared
+
+speech.speak(
+    "Email: user@example.com!",
+    language: .Spanish,
+    punctuationVerbosity: .some
+)
+
+speech.speak(
+    "Hello, world!",
+    language: .English,
+    punctuationVerbosity: .all
+)
+```
+
+Available levels:
+
+* `.none`: keeps the original text unchanged. This is the default and matches previous behavior.
+* `.some`: verbalizes useful symbols, such as `@`, `#`, `/`, `+` or `%`, while keeping natural sentence punctuation.
+* `.all`: verbalizes all supported punctuation marks.
+
+### Completed spoken range
+
+Use `onSpokenTextWithRange` to know the range that is about to be spoken, and `onFinishedSpokenTextWithRange` to know the range that has just finished. The finished callback is emitted when AVFoundation reports the next range, and again at the end for the last pending range.
+
+```
+speech.onFinishedSpokenTextWithRange = { range, fullText, utterance in
+    // Update highlighted text using the completed range.
+}
+```
+
+### SSML
+
+SSML is supported on iOS 16, macOS 13, watchOS 9 and tvOS 16 or newer through AVFoundation. On older systems, or when the SSML is invalid, SpeechManager reports an error and falls back to readable plain text.
+
+```
+speech.speakSSML("""
+<speak>
+    Hello <break time="300ms"/> world.
+</speak>
+""")
+
+var configuration = SpeechConfiguration(language: .English)
+configuration.textFormat = .ssml
+speech.speak("<speak>Hello world.</speak>", settings: configuration)
+```
+
 ## Author
 
 This package was developed by Jonathan Chacón .

@@ -1,100 +1,95 @@
+import AVFoundation
 import XCTest
 @testable import SpeechManager
 
 final class SpeechManagerTests: XCTestCase {
     private final class DelegateSpy: SpeechManagerDelegate {
         var didFinishCount = 0
-        private var hasFulfilled = false
-        private let finished: XCTestExpectation
-        
-        init(finished: XCTestExpectation) {
-            self.finished = finished
-        }
-        
+
         func speechManagerDidFinish() {
             didFinishCount += 1
-            guard !hasFulfilled else { return }
-            hasFulfilled = true
-            finished.fulfill()
         }
     }
-    
-    private func waitUntilIdle(
-        _ speech: SpeechManager,
-        timeout: TimeInterval = 2.0,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        let deadline = Date().addingTimeInterval(timeout)
-        while Date() < deadline {
-            if !speech.isSpeaking && !speech.isPaused {
-                return
-            }
-            RunLoop.main.run(until: Date().addingTimeInterval(0.05))
-        }
-        XCTFail("SpeechManager did not become idle in time", file: file, line: line)
+
+    private let speech = SpeechManager.shared
+
+    override func setUp() {
+        super.setUp()
+        resetSpeechManager()
     }
-    
-    
-    
-    func testSpeak_simple() {
-        let speech = SpeechManager.shared
-        speech.accessibilityVoiceEnabled = false
-        speech.onUtteranceFinished = nil
-        
-        let finishedExpectation = expectation(description: "SpeechManager delegate didFinish called")
-        let spy = DelegateSpy(finished: finishedExpectation)
-        speech.delegate = spy
-        
-        DispatchQueue.main.async {
-            speech.speak(
-                "Hello world!",
-                rate: 0.6,
-                preDelay: 0.0,
-                postDelay: 0.0
-            )
-        }
-        
-        // Assert
-        wait(for: [finishedExpectation], timeout: 5.0)
-        
-        speech.stopAndClearQueue()
-        waitUntilIdle(speech)
-        speech.delegate = nil
+
+    override func tearDown() {
+        resetSpeechManager()
+        super.tearDown()
     }
-    
-    func testSpeak_with_qewe() async {
-        let speech = SpeechManager.shared
-        speech.accessibilityVoiceEnabled = false
-        speech.stopAndClearQueue()
-        waitUntilIdle(speech)
-        
-        defer {
-            speech.stopAndClearQueue()
-            waitUntilIdle(speech)
-            speech.delegate = nil
-            speech.onSpokenText = nil
-            speech.onSpokenTextWithRange = nil
-            speech.onUtteranceFinished = nil
-        }
+
+    func testSpeakStoresLastConfigurationWithoutUsingRealSynthesizer() {
+        speech.accessibilityVoiceEnabled = true
+
+        speech.speak(
+            "Hello world!",
+            volume: 0.7,
+            rate: 0.6,
+            pitch: 1.2,
+            language: .English,
+            voiceId: "voice.id",
+            voiceName: "voice name",
+            alone: true,
+            withAccessibilitySettings: false,
+            preDelay: 0.1,
+            postDelay: 0.2,
+            punctuationVerbosity: .all,
+            textFormat: .plainText
+        )
+
+        XCTAssertEqual(speech.lastSpeechConfiguration.volume, 0.7)
+        XCTAssertEqual(speech.lastSpeechConfiguration.rate, 0.6)
+        XCTAssertEqual(speech.lastSpeechConfiguration.pitch, 1.2)
+        XCTAssertEqual(speech.lastSpeechConfiguration.language, .English)
+        XCTAssertEqual(speech.lastSpeechConfiguration.voiceId, "voice.id")
+        XCTAssertEqual(speech.lastSpeechConfiguration.voiceName, "voice name")
+        XCTAssertEqual(speech.lastSpeechConfiguration.alone, true)
+        XCTAssertEqual(speech.lastSpeechConfiguration.withAccessibilitySettings, false)
+        XCTAssertEqual(speech.lastSpeechConfiguration.preDelay, 0.1)
+        XCTAssertEqual(speech.lastSpeechConfiguration.postDelay, 0.2)
+        XCTAssertEqual(speech.lastSpeechConfiguration.punctuationVerbosity, .all)
+        XCTAssertEqual(speech.lastSpeechConfiguration.textFormat, .plainText)
+    }
+
+    func testSpeakWithQueueDrainsInOrderWhenUtterancesFinish() {
+        speech.accessibilityVoiceEnabled = true
         let expected = ["One", "Two", "Three", "four", "five"]
         var finishedUtterances: [String] = []
-        let allUtterancesFinished = expectation(description: "All enqueued utterances finished")
-        allUtterancesFinished.expectedFulfillmentCount = expected.count
-        let finishedExpectation = expectation(description: "Delegate didFinish called once at end")
-        let spy = DelegateSpy(finished: finishedExpectation)
+        let spy = DelegateSpy()
         speech.delegate = spy
-        speech.onUtteranceFinished = { text, utterance in
+        speech.onUtteranceFinished = { text, _ in
             finishedUtterances.append(text)
-            allUtterancesFinished.fulfill()
         }
-        await MainActor.run {
-            expected.forEach { speech.speakEnqueued($0) }
+
+        expected.forEach { speech.speakEnqueued($0) }
+        expected.forEach {
+            speech.speechSynthesizer(speech.synthesizer, didFinish: AVSpeechUtterance(string: $0))
         }
-        await fulfillment(of: [allUtterancesFinished, finishedExpectation], timeout: 10.0)
-        // Assert
-        XCTAssertEqual(finishedUtterances, expected, "The order is not the same. Result = \(finishedUtterances)")
-        XCTAssertEqual(spy.didFinishCount, 1, "More than one call to didFinish")
-        XCTAssertTrue(speech.queuedText.isEmpty, "The quewe is not empty")
+
+        XCTAssertEqual(finishedUtterances, expected)
+        XCTAssertEqual(spy.didFinishCount, 1)
+        XCTAssertTrue(speech.queuedText.isEmpty)
+        XCTAssertFalse(speech.isDrainingQueue)
+    }
+
+    private func resetSpeechManager() {
+        speech.stopAndClearQueue()
+        speech.delegate = nil
+        speech.onSpokenText = nil
+        speech.onSpokenTextWithRange = nil
+        speech.onFinishedSpokenText = nil
+        speech.onFinishedSpokenTextWithRange = nil
+        speech.onUtteranceFinished = nil
+        speech.onSpeechManagerError = nil
+        speech.accessibilityVoiceEnabled = false
+        speech.muteStatus = false
+        speech.isDrainingQueue = false
+        speech.lastSpeechConfiguration = SpeechConfiguration()
+        speech.pendingFinishedRanges = [:]
     }
 }

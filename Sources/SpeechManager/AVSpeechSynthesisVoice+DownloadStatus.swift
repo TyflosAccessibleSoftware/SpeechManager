@@ -12,6 +12,14 @@ public extension AVSpeechSynthesisVoice {
     }
     
     var downloadStatus: VoiceDownloadStatus {
+        guard isInstalledForAVSpeech else {
+            return .needsDownload
+        }
+#if os(watchOS)
+        guard #available(watchOS 6.0, *) else {
+            return .available
+        }
+#endif
         let settings = self.audioFileSettings
         if settings.isEmpty {
             return .needsDownload
