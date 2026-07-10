@@ -1,18 +1,15 @@
-import Testing
+import XCTest
 @testable import SpeechManager
 
-struct SpeechLanguageTests {
-
-    @Test("SpeechLanguage: unknown rawValue is empty")
-    func unknownIsEmpty() {
-        #expect(SpeechLanguage.unknown.rawValue == "")
+final class SpeechLanguageTests: XCTestCase {
+    func testUnknownRawValueIsEmpty() {
+        XCTAssertEqual(SpeechLanguage.unknown.rawValue, "")
     }
 
-    @Test("SpeechLanguage: known rawValues smoke test")
-    func knownRawValues() {
-        #expect(SpeechLanguage.Spanish.rawValue == "es-ES")
-        #expect(SpeechLanguage.English.rawValue == "en-US")
-        #expect(SpeechLanguage.French.rawValue == "fr-FR")
-        #expect(SpeechLanguage.PortugueseBrazil.rawValue == "pt-BR")
+    func testKnownRawValues() {
+        XCTAssertEqual(SpeechLanguage.Spanish.rawValue, "es-ES")
+        XCTAssertEqual(SpeechLanguage.English.rawValue, "en-US")
+        XCTAssertEqual(SpeechLanguage.French.rawValue, "fr-FR")
+        XCTAssertEqual(SpeechLanguage.PortugueseBrazil.rawValue, "pt-BR")
     }
 }

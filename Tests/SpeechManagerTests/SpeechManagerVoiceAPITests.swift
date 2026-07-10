@@ -1,125 +1,130 @@
-import Testing
 import AVFoundation
+import XCTest
 @testable import SpeechManager
 
-struct SpeechManagerVoiceAPITests {
-    
-    @Test("SpeechManager.availableLanguages: unique and sorted set",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func availableLanguagesIsUniqueAndSorted() {
-        let mgr = SpeechManager.shared
-        let langs = mgr.availableLanguages
-        
-        #expect(langs == Array(Set(langs)).sorted())
-        #expect(langs.allSatisfy { !$0.isEmpty })
+final class SpeechManagerVoiceAPITests: XCTestCase {
+    private let manager = SpeechManager.shared
+
+    func testAvailableLanguagesIsUniqueAndSorted() throws {
+        try skipIfNoSpeechVoices()
+
+        let languages = manager.availableLanguages
+
+        XCTAssertEqual(languages, Array(Set(languages)).sorted())
+        XCTAssertTrue(languages.allSatisfy { !$0.isEmpty })
     }
-    
-    @Test("SpeechManager.installedVoices: non-empty when speechVoices() is non-empty",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func installedVoicesNotEmpty() {
-        let mgr = SpeechManager.shared
-        #expect(mgr.installedVoices.isEmpty == false)
+
+    func testInstalledVoicesNotEmpty() throws {
+        try skipIfNoSpeechVoices()
+
+        XCTAssertFalse(manager.installedVoices.isEmpty)
     }
-    
-    @Test("SpeechManager.availableVoices == installedVoices.longName",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func availableVoicesMatchesInstalledLongNames() {
-        let mgr = SpeechManager.shared
-        #expect(mgr.availableVoices == mgr.installedVoices.map(\.longName))
+
+    func testAvailableVoicesMatchesInstalledLongNames() throws {
+        try skipIfNoSpeechVoices()
+
+        XCTAssertEqual(manager.availableVoices, manager.installedVoices.map(\.longName))
     }
-    
-    @Test("SpeechManager.allVoicesByLanguage groups correctly",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func allVoicesByLanguageGroupsCorrectly() {
-        let mgr = SpeechManager.shared
-        let grouped = mgr.allVoicesByLanguage
-        
-        for v in mgr.installedVoices {
-            let bucket = grouped[v.language] ?? []
-            #expect(bucket.contains(where: { $0.identifier == v.identifier }))
+
+    func testAllVoicesByLanguageGroupsCorrectly() throws {
+        try skipIfNoSpeechVoices()
+
+        let grouped = manager.allVoicesByLanguage
+
+        for voice in manager.installedVoices {
+            let bucket = grouped[voice.language] ?? []
+            XCTAssertTrue(bucket.contains(where: { $0.identifier == voice.identifier }))
         }
     }
-    
-    @Test("SpeechManager.availableVoicesByLanguage: subset of installedVoices with downloadStatus == .available",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func availableVoicesByLanguageIsFilteredSubset() {
-        let mgr = SpeechManager.shared
-        let filtered = mgr.availableVoicesByLanguage.flatMap { $0.value }
-        
-        #expect(filtered.allSatisfy { $0.downloadStatus == .available })
-        
-        let installedIDs = Set(mgr.installedVoices.map(\.identifier))
-        #expect(filtered.allSatisfy { installedIDs.contains($0.identifier) })
-    }
-    
-    @Test("getVoiceBy(id:) returns the correct voice",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func getVoiceById() throws {
-        let mgr = SpeechManager.shared
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
-        
-        let found = mgr.getVoiceBy(id: voice.identifier)
-        #expect(found?.identifier == voice.identifier)
-    }
-    
-    @Test("getVoiceBy(longName:) is case-insensitive",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func getVoiceByLongNameCaseInsensitive() throws {
-        let mgr = SpeechManager.shared
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
-        
-        let query = voice.longName.uppercased()
-        let found = mgr.getVoiceBy(longName: query)
-        #expect(found?.identifier == voice.identifier)
+
+    func testAvailableVoicesByLanguageIsFilteredSubset() throws {
+        try skipIfNoSpeechVoices()
+
+        let filtered = manager.availableVoicesByLanguage.flatMap { $0.value }
+        let installedIDs = Set(manager.installedVoices.map(\.identifier))
+
+        XCTAssertTrue(filtered.allSatisfy { $0.downloadStatus == .available })
+        XCTAssertTrue(filtered.allSatisfy { installedIDs.contains($0.identifier) })
     }
 
-    @Test("getVoicesBy(_:) returns only voices with that name",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func getVoicesByName() throws {
-        let mgr = SpeechManager.shared
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
+    func testGetVoiceById() throws {
+        let voice = try requireSpeechVoice()
 
-        let matches = mgr.getVoicesBy(voice.name.uppercased())
-        #expect(matches.isEmpty == false)
-        #expect(matches.allSatisfy { $0.name.caseInsensitiveCompare(voice.name) == .orderedSame })
+        let found = manager.getVoiceBy(id: voice.identifier)
+
+        XCTAssertEqual(found?.identifier, voice.identifier)
     }
 
-    @Test("getVoicesFor(language:) returns only voices for that language",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func getVoicesForLanguage() throws {
-        let mgr = SpeechManager.shared
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
+    func testGetVoiceByLongNameCaseInsensitive() throws {
+        let voice = try requireSpeechVoice()
 
-        let matches = mgr.getVoicesFor(language: voice.language.uppercased())
-        #expect(matches.isEmpty == false)
-        #expect(matches.allSatisfy { $0.language.caseInsensitiveCompare(voice.language) == .orderedSame })
+        let found = manager.getVoiceBy(longName: voice.longName.uppercased())
+
+        XCTAssertEqual(found?.identifier, voice.identifier)
     }
-    
-    @Test("findVoice(matching:) finds by name or longName",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func findVoiceMatching() throws {
-        let mgr = SpeechManager.shared
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
-        
+
+    func testGetVoicesByName() throws {
+        let voice = try requireSpeechVoice()
+
+        let matches = manager.getVoicesBy(voice.name.uppercased())
+
+        XCTAssertFalse(matches.isEmpty)
+        XCTAssertTrue(matches.allSatisfy { $0.name.caseInsensitiveCompare(voice.name) == .orderedSame })
+    }
+
+    func testGetVoicesForLanguage() throws {
+        let voice = try requireSpeechVoice()
+
+        let matches = manager.getVoicesFor(language: voice.language.uppercased())
+
+        XCTAssertFalse(matches.isEmpty)
+        XCTAssertTrue(matches.allSatisfy { $0.language.caseInsensitiveCompare(voice.language) == .orderedSame })
+    }
+
+    func testFindVoiceMatching() throws {
+        let voice = try requireSpeechVoice()
         let fragment = String(voice.name.prefix(min(3, voice.name.count)))
-        let found = mgr.findVoice(matching: fragment)
-        
-        #expect(found != nil)
-        #expect(found!.name.localizedCaseInsensitiveContains(fragment)
-                || found!.longName.localizedCaseInsensitiveContains(fragment))
+
+        let found = manager.findVoice(matching: fragment)
+
+        XCTAssertNotNil(found)
+        XCTAssertTrue(
+            found?.name.localizedCaseInsensitiveContains(fragment) == true
+            || found?.longName.localizedCaseInsensitiveContains(fragment) == true
+        )
     }
 
-    @Test("Current default voice values are coherent",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func defaultVoiceValuesAreCoherent() {
-        let mgr = SpeechManager.shared
+    func testDefaultVoiceValuesAreCoherent() throws {
+        try skipIfNoSpeechVoices()
+
         let utterance = AVSpeechUtterance(string: "Sample text")
 
-        #expect(mgr.defaultVoiceLanguage == (utterance.voice?.language ?? ""))
-        #expect(mgr.defaultVoiceName == (utterance.voice?.name ?? ""))
-        #expect(mgr.defaultVoiceLongName == (utterance.voice?.longName ?? ""))
-        #expect(mgr.defaultVoiceVolume == utterance.volume)
-        #expect(mgr.defaultVoiceRate == utterance.rate)
-        #expect(mgr.defaultVoicepitchMultiplier == utterance.pitchMultiplier)
+        XCTAssertEqual(manager.defaultVoiceLanguage, utterance.voice?.language ?? "")
+        XCTAssertEqual(manager.defaultVoiceName, utterance.voice?.name ?? "")
+        XCTAssertEqual(manager.defaultVoiceLongName, utterance.voice?.longName ?? "")
+        XCTAssertEqual(manager.defaultVoiceVolume, utterance.volume)
+        XCTAssertEqual(manager.defaultVoiceRate, utterance.rate)
+        XCTAssertEqual(manager.defaultVoicepitchMultiplier, utterance.pitchMultiplier)
+    }
+
+    private func requireSpeechVoice() throws -> AVSpeechSynthesisVoice {
+#if os(watchOS)
+        throw XCTSkip("System voice enumeration is skipped in watchOS tests.")
+#else
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+        try XCTSkipIf(voices.isEmpty, "No AVSpeechSynthesisVoice entries are available in this test environment.")
+        return try XCTUnwrap(voices.first)
+#endif
+    }
+
+    private func skipIfNoSpeechVoices() throws {
+#if os(watchOS)
+        throw XCTSkip("System voice enumeration is skipped in watchOS tests.")
+#else
+        try XCTSkipIf(
+            AVSpeechSynthesisVoice.speechVoices().isEmpty,
+            "No AVSpeechSynthesisVoice entries are available in this test environment."
+        )
+#endif
     }
 }

@@ -23,6 +23,7 @@ final class SpeechManagerBehaviorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        manager.speechOutputEnabled = false
         manager.stopAndClearQueue()
         manager.delegate = nil
         manager.onSpokenText = nil
@@ -39,6 +40,7 @@ final class SpeechManagerBehaviorTests: XCTestCase {
     }
 
     override func tearDown() {
+        manager.speechOutputEnabled = false
         manager.stopAndClearQueue()
         manager.delegate = nil
         manager.onSpokenText = nil
@@ -48,6 +50,7 @@ final class SpeechManagerBehaviorTests: XCTestCase {
         manager.onUtteranceFinished = nil
         manager.onSpeechManagerError = nil
         manager.pendingFinishedRanges = [:]
+        manager.speechOutputEnabled = true
         super.tearDown()
     }
 
@@ -74,11 +77,14 @@ final class SpeechManagerBehaviorTests: XCTestCase {
             SpeechQueueElement(text: "two", configuration: nil)
         ]
         manager.isDrainingQueue = true
+        let utterance = AVSpeechUtterance(string: "active")
+        manager.pendingFinishedRanges[ObjectIdentifier(utterance)] = NSRange(location: 0, length: 6)
 
         manager.stop()
 
         XCTAssertTrue(manager.queuedText.isEmpty)
         XCTAssertFalse(manager.isDrainingQueue)
+        XCTAssertTrue(manager.pendingFinishedRanges.isEmpty)
     }
 
     func testClearQueueRemovesAllQueuedElements() {
@@ -164,6 +170,19 @@ final class SpeechManagerBehaviorTests: XCTestCase {
         XCTAssertEqual(delegate.didPauseCount, 1)
         XCTAssertEqual(delegate.didContinueCount, 1)
         XCTAssertEqual(delegate.didCancelCount, 1)
+    }
+
+    func testDidCancelDropsPendingFinishedRange() {
+        let utterance = AVSpeechUtterance(string: "cancel me")
+        manager.speechSynthesizer(
+            manager.synthesizer,
+            willSpeakRangeOfSpeechString: NSRange(location: 0, length: 6),
+            utterance: utterance
+        )
+
+        manager.speechSynthesizer(manager.synthesizer, didCancel: utterance)
+
+        XCTAssertTrue(manager.pendingFinishedRanges.isEmpty)
     }
 
     func testWillSpeakRangeInvokesBothCallbacksWithExpectedSlices() {

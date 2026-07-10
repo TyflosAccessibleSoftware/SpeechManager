@@ -1,72 +1,79 @@
-import Testing
 import AVFoundation
+import XCTest
 @testable import SpeechManager
 
-struct AVSpeechSynthesisVoiceExtensionsTests {
-    
-    @Test("AVSpeechSynthesisVoice.longName: includes name and language",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func longNameContainsNameAndLanguage() throws {
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
-        
-        let ln = voice.longName
-        #expect(ln.contains(voice.name))
-        #expect(ln.contains("(\(voice.language))"))
+final class AVSpeechSynthesisVoiceExtensionsTests: XCTestCase {
+    func testLongNameContainsNameAndLanguage() throws {
+        let voice = try requireSpeechVoice()
+
+        let longName = voice.longName
+        XCTAssertTrue(longName.contains(voice.name))
+        XCTAssertTrue(longName.contains("(\(voice.language))"))
     }
-    
-    @Test("AVSpeechSynthesisVoice.voices(forLanguage:): returns only that language",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func voicesForLanguageFiltersCorrectly() throws {
-        let anyVoice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
-        let lang = anyVoice.language
-        
-        let voices = AVSpeechSynthesisVoice.voices(forLanguage: lang)
-        #expect(voices.isEmpty == false)
-        #expect(voices.allSatisfy { $0.language == lang })
+
+    func testVoicesForLanguageFiltersCorrectly() throws {
+        let voice = try requireSpeechVoice()
+        let language = voice.language
+
+        let voices = AVSpeechSynthesisVoice.voices(forLanguage: language)
+
+        XCTAssertFalse(voices.isEmpty)
+        XCTAssertTrue(voices.allSatisfy { $0.language == language })
     }
-    
-    @Test("AVSpeechSynthesisVoice.voice(matchingName:): finds by longName",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func voiceMatchingByLongName() throws {
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
-        
+
+    func testVoiceMatchingByLongName() throws {
+        let voice = try requireSpeechVoice()
+
         let found = AVSpeechSynthesisVoice.voice(matchingName: voice.longName)
-        #expect(found?.identifier == voice.identifier)
+
+        XCTAssertEqual(found?.identifier, voice.identifier)
     }
-    
-    @Test("AVSpeechSynthesisVoice.voice(matchingName:): finds by name",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func voiceMatchingByName() throws {
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
-        
+
+    func testVoiceMatchingByName() throws {
+        let voice = try requireSpeechVoice()
+
         let found = AVSpeechSynthesisVoice.voice(matchingName: voice.name)
-        #expect(found != nil)
-        #expect(found!.name.caseInsensitiveCompare(voice.name) == .orderedSame
-                || found!.longName.caseInsensitiveCompare(voice.name) == .orderedSame)
+
+        XCTAssertNotNil(found)
+        XCTAssertTrue(
+            found?.name.caseInsensitiveCompare(voice.name) == .orderedSame
+            || found?.longName.caseInsensitiveCompare(voice.name) == .orderedSame
+        )
     }
-    
-    @Test("AVSpeechSynthesisVoice.isInstalledForAVSpeech: true for voices listed by speechVoices()",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func installedFlagIsTrueForListedVoices() throws {
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
-        #expect(voice.isInstalledForAVSpeech == true)
+
+    func testInstalledFlagIsTrueForListedVoices() throws {
+        let voice = try requireSpeechVoice()
+
+        XCTAssertTrue(voice.isInstalledForAVSpeech)
     }
-    
-    @Test("AVSpeechSynthesisVoice.downloadStatus: consistent with audioFileSettings",
-          .enabled(if: !AVSpeechSynthesisVoice.speechVoices().isEmpty))
-    func downloadStatusIsConsistentWithSettings() throws {
-        let voice = try #require(AVSpeechSynthesisVoice.speechVoices().first)
+
+    func testDownloadStatusIsConsistentWithSettings() throws {
+        let voice = try requireSpeechVoice()
+#if os(watchOS)
+        throw XCTSkip("Voice asset settings are not exercised in watchOS tests.")
+#else
         let settings = voice.audioFileSettings
-        
+
         let status = voice.downloadStatus
-        
+
         if settings.isEmpty {
-            #expect(status == .needsDownload)
+            XCTAssertEqual(status, .needsDownload)
         } else if let footprint = settings["AVVoiceAssetFootprint"] as? String,
                   footprint == "AVVoiceAssetFootprintNotRequired" {
-            #expect(status == .available)
+            XCTAssertEqual(status, .available)
         } else {
-            #expect(status == .needsDownload)
+            XCTAssertEqual(status, .needsDownload)
         }
+#endif
+    }
+
+    private func requireSpeechVoice() throws -> AVSpeechSynthesisVoice {
+#if os(watchOS)
+        throw XCTSkip("System voice enumeration is skipped in watchOS tests.")
+#else
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+        try XCTSkipIf(voices.isEmpty, "No AVSpeechSynthesisVoice entries are available in this test environment.")
+        return try XCTUnwrap(voices.first)
+#endif
     }
 }

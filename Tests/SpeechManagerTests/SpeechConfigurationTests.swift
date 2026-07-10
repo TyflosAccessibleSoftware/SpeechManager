@@ -1,29 +1,26 @@
-import Testing
+import XCTest
 @testable import SpeechManager
 
-struct SpeechConfigurationTests {
+final class SpeechConfigurationTests: XCTestCase {
+    func testDefaultValues() {
+        let configuration = SpeechConfiguration()
 
-    @Test("SpeechConfiguration: default values")
-    func defaults() {
-        let c = SpeechConfiguration()
-
-        #expect(c.volume == 1.0)
-        #expect(c.rate == 0.5)
-        #expect(c.pitch == 1.0)
-        #expect(c.language == .unknown)
-        #expect(c.voiceId == nil)
-        #expect(c.voiceName == nil)
-        #expect(c.alone == false)
-        #expect(c.withAccessibilitySettings == false)
-        #expect(c.preDelay == 0.0)
-        #expect(c.postDelay == 0.0)
-        #expect(c.punctuationVerbosity == .none)
-        #expect(c.textFormat == .plainText)
+        XCTAssertEqual(configuration.volume, 1.0)
+        XCTAssertEqual(configuration.rate, 0.5)
+        XCTAssertEqual(configuration.pitch, 1.0)
+        XCTAssertEqual(configuration.language, .unknown)
+        XCTAssertNil(configuration.voiceId)
+        XCTAssertNil(configuration.voiceName)
+        XCTAssertFalse(configuration.alone)
+        XCTAssertFalse(configuration.withAccessibilitySettings)
+        XCTAssertEqual(configuration.preDelay, 0.0)
+        XCTAssertEqual(configuration.postDelay, 0.0)
+        XCTAssertEqual(configuration.punctuationVerbosity, .none)
+        XCTAssertEqual(configuration.textFormat, .plainText)
     }
 
-    @Test("SpeechConfiguration: init preserves custom values")
-    func customInit() {
-        let c = SpeechConfiguration(
+    func testInitPreservesCustomValues() {
+        let configuration = SpeechConfiguration(
             volume: 0.2,
             rate: 0.9,
             pitch: 1.5,
@@ -38,17 +35,17 @@ struct SpeechConfigurationTests {
             textFormat: .ssml
         )
 
-        #expect(c.volume == 0.2)
-        #expect(c.rate == 0.9)
-        #expect(c.pitch == 1.5)
-        #expect(c.language == .Spanish)
-        #expect(c.voiceId == "voice.id")
-        #expect(c.voiceName == "foo")
-        #expect(c.alone == true)
-        #expect(c.withAccessibilitySettings == true)
-        #expect(c.preDelay == 0.3)
-        #expect(c.postDelay == 0.7)
-        #expect(c.punctuationVerbosity == .all)
-        #expect(c.textFormat == .ssml)
+        XCTAssertEqual(configuration.volume, 0.2)
+        XCTAssertEqual(configuration.rate, 0.9)
+        XCTAssertEqual(configuration.pitch, 1.5)
+        XCTAssertEqual(configuration.language, .Spanish)
+        XCTAssertEqual(configuration.voiceId, "voice.id")
+        XCTAssertEqual(configuration.voiceName, "foo")
+        XCTAssertTrue(configuration.alone)
+        XCTAssertTrue(configuration.withAccessibilitySettings)
+        XCTAssertEqual(configuration.preDelay, 0.3)
+        XCTAssertEqual(configuration.postDelay, 0.7)
+        XCTAssertEqual(configuration.punctuationVerbosity, .all)
+        XCTAssertEqual(configuration.textFormat, .ssml)
     }
 }

@@ -63,10 +63,11 @@ public final class SpeechManager : NSObject, AVSpeechSynthesizerDelegate {
     internal var lastSpeechConfiguration = SpeechConfiguration()
     internal var isDrainingQueue = false
     internal var pendingFinishedRanges: [ObjectIdentifier: NSRange] = [:]
+    internal var speechOutputEnabled = true
     private override init() {
         super.init()
         synthesizer.delegate = self
-            }
+    }
     
     deinit {}
 }

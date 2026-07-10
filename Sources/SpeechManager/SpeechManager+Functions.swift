@@ -45,6 +45,24 @@ extension SpeechManager {
         punctuationVerbosity: SpeechPunctuationVerbosity = .none,
         textFormat: SpeechTextFormat = .plainText
     ) {
+        guard speechOutputEnabled else {
+            saveSpeechConfiguration(
+                volume: volume,
+                rate: rate,
+                pitch: pitch,
+                language: language,
+                voiceId: voiceId,
+                voiceName: voiceName,
+                alone: alone,
+                withAccessibilitySettings: withAccessibilitySettings,
+                preDelay: preDelay,
+                postDelay: postDelay,
+                punctuationVerbosity: punctuationVerbosity,
+                textFormat: textFormat
+            )
+            return
+        }
+
         var requestedVoice: AVSpeechSynthesisVoice?
         if let voice = voice {
             requestedVoice = voice
@@ -79,8 +97,6 @@ extension SpeechManager {
             postDelay: postDelay,
             textFormat: textFormat
         )
-        
-        
         if alone {
             stopWithScreenReader()
         }
@@ -122,7 +138,7 @@ extension SpeechManager {
         queuedText.append(newElement)
         guard !isDrainingQueue else { return }
         isDrainingQueue = true
-            manageQueue()
+        manageQueue()
     }
 
     public func speakSSMLEnqueued(_ ssml: String, configuration: SpeechConfiguration? = nil) {
@@ -144,6 +160,7 @@ extension SpeechManager {
         isDrainingQueue = false
         clearQueue()
         pendingFinishedRanges.removeAll()
+        guard speechOutputEnabled else { return }
         if accessibilityVoiceEnabled == true {
             stopWithScreenReader()
         } else {

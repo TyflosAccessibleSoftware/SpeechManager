@@ -78,6 +78,7 @@ final class SpeechManagerTests: XCTestCase {
     }
 
     private func resetSpeechManager() {
+        speech.speechOutputEnabled = false
         speech.stopAndClearQueue()
         speech.delegate = nil
         speech.onSpokenText = nil
